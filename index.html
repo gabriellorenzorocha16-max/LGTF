@@ -3,482 +3,687 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LGTF | Tecnologia do Futuro</title>
+<meta name="description" content="LGTF - Leading Global Technology's Future. Impressão 3D e criatividade.">
+<title>LGTF | Impressão 3D</title>
 
 <style>
 :root {
-  --fundo: #070b18;
-  --painel: #101a30;
-  --texto: #f2f7ff;
-  --secundario: #a8b6cc;
-  --neon: #00eaff;
-  --roxo: #7857ff;
-  --borda: rgba(0,234,255,.2);
+    --bg: #080b16;
+    --bg2: #101629;
+    --card: #111a30;
+    --text: #f4f7ff;
+    --muted: #aab6ce;
+    --primary: #00e5ff;
+    --secondary: #8b5cf6;
+    --border: rgba(0,229,255,.2);
+    --shadow: 0 0 25px rgba(0,229,255,.12);
 }
 
-body.claro {
-  --fundo: #edf3fb;
-  --painel: #ffffff;
-  --texto: #14213a;
-  --secundario: #52617a;
-  --neon: #007caa;
-  --roxo: #6343d8;
-  --borda: rgba(0,100,160,.2);
+body.light {
+    --bg: #f1f5fb;
+    --bg2: #e5edf8;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #526078;
+    --primary: #007eaa;
+    --secondary: #7041c5;
+    --border: rgba(0,126,170,.2);
+    --shadow: 0 5px 25px rgba(0,0,0,.08);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at 15% 15%, rgba(0,234,255,.10), transparent 30%),
-    radial-gradient(circle at 85% 60%, rgba(120,87,255,.12), transparent 30%),
-    var(--fundo);
-  color: var(--texto);
-  transition: background .3s, color .3s;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: .3s;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    text-decoration: none;
+    color: inherit;
 }
 
-button, input, textarea, select {
-  font: inherit;
+button, input, select, textarea {
+    font: inherit;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(7,11,24,.92);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--borda);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(8,11,22,.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
 }
 
-body.claro header {
-  background: rgba(255,255,255,.92);
+body.light header {
+    background: rgba(255,255,255,.92);
 }
 
-nav {
-  max-width: 1200px;
-  margin: auto;
-  padding: 17px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
 .logo {
-  font-size: 25px;
-  font-weight: 900;
-  color: var(--neon);
-  letter-spacing: 2px;
-  text-shadow: 0 0 15px var(--neon);
+    font-size: 27px;
+    font-weight: 900;
+    color: var(--primary);
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px var(--primary);
 }
 
-.menu {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 17px;
+.nav-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    list-style: none;
 }
 
-.menu a {
-  font-size: 13px;
-  color: var(--secundario);
-  transition: .3s;
+.nav-links a {
+    font-size: 13px;
+    color: var(--text);
+    transition: .3s;
 }
 
-.menu a:hover {
-  color: var(--neon);
+.nav-links a:hover {
+    color: var(--primary);
 }
 
-.botao {
-  display: inline-block;
-  padding: 13px 21px;
-  border: 1px solid var(--neon);
-  border-radius: 9px;
-  background: transparent;
-  color: var(--neon);
-  font-weight: bold;
-  transition: .3s;
+.theme-btn, .menu-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--primary);
+    padding: 9px 13px;
+    border-radius: 8px;
 }
 
-.botao:hover {
-  background: var(--neon);
-  color: #06101b;
-  box-shadow: 0 0 22px rgba(0,234,255,.4);
-  transform: translateY(-3px);
-}
-
-.botao-principal {
-  background: var(--neon);
-  color: #06101b;
+.menu-btn {
+    display: none;
 }
 
 section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 85px 5%;
+    padding: 100px 8%;
+    scroll-margin-top: 65px;
 }
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.section-title span {
+    color: var(--primary);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--muted);
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 25px;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    background: var(--primary);
+    color: #06111a;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 22px var(--primary);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+}
+
+/* INÍCIO */
 
 .hero {
-  min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 130px;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0,229,255,.13), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(139,92,246,.16), transparent 35%),
+        var(--bg);
 }
 
-.etiqueta {
-  color: var(--neon);
-  border: 1px solid var(--borda);
-  background: var(--painel);
-  padding: 9px 17px;
-  border-radius: 30px;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
+.hero-content {
+    max-width: 850px;
+}
+
+.hero-tag {
+    color: var(--primary);
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .hero h1 {
-  font-size: clamp(42px, 8vw, 82px);
-  max-width: 900px;
-  line-height: 1.05;
-  margin-bottom: 22px;
+    font-size: clamp(40px, 7vw, 75px);
+    line-height: 1.1;
+    margin: 20px 0;
 }
 
-.destaque {
-  color: var(--neon);
-  text-shadow: 0 0 25px rgba(0,234,255,.35);
+.hero h1 span {
+    color: var(--primary);
+    text-shadow: 0 0 25px rgba(0,229,255,.5);
 }
 
 .hero p {
-  color: var(--secundario);
-  max-width: 650px;
-  line-height: 1.8;
-  margin-bottom: 30px;
+    max-width: 650px;
+    margin: 0 auto 30px;
+    color: var(--muted);
+    font-size: 17px;
 }
 
-.botoes {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.titulo-secao {
-  text-align: center;
-  margin-bottom: 45px;
+/* EMPRESA */
+
+.about {
+    background: var(--bg2);
 }
 
-.titulo-secao h2 {
-  font-size: clamp(28px, 5vw, 42px);
-  margin-bottom: 13px;
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
 }
 
-.titulo-secao p {
-  color: var(--secundario);
-  line-height: 1.7;
+.about-text p {
+    color: var(--muted);
+    margin: 15px 0;
 }
 
-.grade {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+.about-panel {
+    min-height: 300px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background:
+        radial-gradient(circle, rgba(0,229,255,.18), transparent 65%),
+        var(--card);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
 }
 
-.cartao {
-  background: var(--painel);
-  border: 1px solid var(--borda);
-  border-radius: 16px;
-  padding: 25px;
-  transition: .3s;
+.about-symbol {
+    font-size: 75px;
+    color: var(--primary);
+    text-shadow: 0 0 25px var(--primary);
 }
 
-.cartao:hover {
-  transform: translateY(-8px);
-  border-color: var(--neon);
-  box-shadow: 0 0 25px rgba(0,234,255,.12);
+.about-panel h3 {
+    font-size: 25px;
+    margin-top: 10px;
 }
 
-.icone {
-  font-size: 35px;
-  margin-bottom: 17px;
+.about-panel p {
+    color: var(--muted);
 }
 
-.cartao h3 {
-  margin-bottom: 12px;
-  color: var(--neon);
+/* SERVIÇOS, EQUIPE E PROJETOS */
+
+.services-grid, .team-grid, .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
 }
 
-.cartao p {
-  color: var(--secundario);
-  line-height: 1.7;
-  font-size: 14px;
+.info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 28px;
+    transition: .3s;
+    box-shadow: var(--shadow);
 }
 
-.sobre {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-  align-items: center;
+.info-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
 }
 
-.sobre h2 {
-  font-size: 38px;
-  margin-bottom: 20px;
+.card-icon {
+    font-size: 35px;
+    margin-bottom: 15px;
 }
 
-.sobre p {
-  color: var(--secundario);
-  line-height: 1.9;
-  margin-bottom: 15px;
+.info-card h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
 }
 
-.painel-visual {
-  min-height: 300px;
-  border: 1px solid var(--borda);
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(0,234,255,.12), rgba(120,87,255,.16));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 90px;
-  text-shadow: 0 0 35px var(--neon);
+.info-card p {
+    color: var(--muted);
+    font-size: 14px;
 }
 
-.projeto {
-  min-height: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.team-card {
+    text-align: center;
 }
 
-.projeto small {
-  color: var(--neon);
-  margin-top: 18px;
+.team-avatar {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    color: var(--primary);
+    background: var(--bg2);
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 18px rgba(0,229,255,.2);
 }
 
-.ferramentas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+.project-card {
+    overflow: hidden;
+    padding: 0;
 }
 
-.ferramentas span {
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--borda);
-  color: var(--neon);
-  font-size: 12px;
+.project-visual {
+    height: 170px;
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+    background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(139,92,246,.2));
 }
 
-.controles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 28px;
+.project-info {
+    padding: 22px;
 }
 
-.controles input, .controles select {
-  padding: 13px;
-  background: var(--painel);
-  border: 1px solid var(--borda);
-  border-radius: 9px;
-  color: var(--texto);
-  min-width: 200px;
+.project-info h3 {
+    color: var(--primary);
+    margin-bottom: 8px;
 }
 
-.produto {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.project-info p {
+    color: var(--muted);
+    font-size: 14px;
+}/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .services-grid,
+    .team-grid,
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.produto-icone {
-  height: 130px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  font-size: 55px;
-  background: linear-gradient(135deg, rgba(0,234,255,.12), rgba(120,87,255,.15));
+@media (max-width: 700px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid,
+    .team-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 80px 6%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
 }
 
-.preco {
-  color: var(--neon);
-  font-weight: bold;
-  font-size: 19px;
+/* LOJA */
+
+.store {
+    background: var(--bg2);
 }
 
-.acoes-produto {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
+.store-controls {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
-.acoes-produto button {
-  flex: 1;
+.store-controls input,
+.store-controls select {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    min-width: 220px;
 }
 
-.pequeno {
-  padding: 10px;
-  font-size: 12px;
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
 }
 
-#mensagem {
-  color: var(--neon);
-  text-align: center;
-  min-height: 24px;
-  margin: 15px 0;
+.product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: .3s;
 }
 
-.carrinho-linha {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--borda);
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow);
 }
 
-.carrinho-linha button {
-  padding: 7px 10px;
+.product-image {
+    height: 180px;
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+    background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(139,92,246,.2));
 }
 
-.total {
-  font-size: 23px;
-  font-weight: bold;
-  color: var(--neon);
-  margin: 22px 0;
+.product-info {
+    padding: 20px;
 }
+
+.product-info h3 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.product-info p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.product-price {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.small-btn {
+    padding: 9px 12px;
+    border-radius: 7px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+
+.small-btn:hover {
+    background: var(--primary);
+    color: #06111a;
+}
+
+.favorite-btn.active {
+    background: var(--secondary);
+    color: white;
+    border-color: var(--secondary);
+}
+
+/* FAVORITOS E CARRINHO */
+
+.panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.panel h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: var(--primary);
+}
+
+.empty-message {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* NOVIDADES */
+
+.news {
+    background: var(--bg2);
+}
+
+.news-box {
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: var(--shadow);
+}
+
+.news-box h3 {
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.news-box p {
+    color: var(--muted);
+}
+
+/* FAQ */
 
 .faq-item {
-  margin-bottom: 12px;
-  overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
 }
 
-.faq-pergunta {
-  width: 100%;
-  padding: 18px;
-  background: var(--painel);
-  border: 1px solid var(--borda);
-  border-radius: 10px;
-  text-align: left;
-  color: var(--texto);
-  font-weight: bold;
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 17px;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
 }
 
-.faq-resposta {
-  display: none;
-  padding: 17px;
-  color: var(--secundario);
-  line-height: 1.7;
+.faq-question:hover {
+    color: var(--primary);
 }
 
-.faq-resposta.aberta {
-  display: block;
+.faq-answer {
+    display: none;
+    padding: 0 17px 17px;
+    color: var(--muted);
 }
 
-form {
-  max-width: 650px;
-  margin: auto;
-  display: grid;
-  gap: 15px;
+.faq-item.open .faq-answer {
+    display: block;
 }
 
-form input, form textarea {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid var(--borda);
-  background: var(--painel);
-  border-radius: 9px;
-  color: var(--texto);
+/* CONTATO E RODAPÉ */
+
+.contact {
+    background: var(--bg2);
 }
 
-form textarea {
-  min-height: 130px;
-  resize: vertical;
+.contact-form {
+    max-width: 700px;
+    margin: auto;
+    display: grid;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(0,229,255,.15);
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
 }
 
 footer {
-  text-align: center;
-  border-top: 1px solid var(--borda);
-  padding: 35px 5%;
-  color: var(--secundario);
-  line-height: 2;
+    padding: 35px 8%;
+    text-align: center;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
 }
 
-#topo {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  z-index: 90;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--neon);
-  background: var(--painel);
-  color: var(--neon);
-  font-size: 23px;
-  display: none;
+footer p {
+    color: var(--muted);
+    font-size: 14px;
 }
 
-.revelar {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity .7s ease, transform .7s ease;
+footer span {
+    color: var(--primary);
 }
 
-.revelar.visivel {
-  opacity: 1;
-  transform: translateY(0);
+/* ANIMAÇÕES */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .7s, transform .7s;
 }
 
-@media(max-width: 800px) {
-  nav {
-    flex-direction: column;
-  }
-
-  .menu {
-    justify-content: center;
-  }
-
-  .sobre {
-    grid-template-columns: 1fr;
-  }
-
-  section {
-    padding: 65px 6%;
-  }
-}
-
-@media(prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
-  }
-
-  .revelar {
+.reveal.visible {
     opacity: 1;
-    transform: none;
-  }
+    transform: translateY(0);
+}
+
+#topButton {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+    z-index: 900;
+    border: none;
+    background: var(--primary);
+    color: #06111a;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 20px;
 }
 </style>
 </head>
@@ -486,625 +691,786 @@ footer {
 <body>
 
 <header>
-  <nav>
-    <a href="#inicio" class="logo">LGTF.</a>
+    <nav class="navbar">
+        <a href="#inicio" class="logo">LGTF</a>
 
-    <div class="menu">
-      <a href="#inicio">Início</a>
-      <a href="#sobre">Empresa</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#equipe">Equipe</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#loja">Loja</a>
-      <a href="#contato">Contato</a>
-    </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
 
-    <button class="botao pequeno" onclick="alternarTema()">
-      Alterar tema
-    </button>
-  </nav>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#empresa">Empresa</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#equipe">Equipe</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#loja">Loja</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+
+        <button class="theme-btn" id="themeBtn">☀️ / 🌙</button>
+    </nav>
 </header>
 
 <main>
 
 <section class="hero" id="inicio">
-  <div class="etiqueta">TECNOLOGIA • INOVAÇÃO • FUTURO</div>
-
-  <h1>
-    O futuro começa <span class="destaque">agora.</span>
-  </h1>
-
-  <p>
-    Somos a LGTF — Leading Global Technology's Future.
-    Uma empresa em desenvolvimento, com ideias, criatividade
-    e tecnologia para construir novas possibilidades.
-  </p>
-
-  <div class="botoes">
-    <a href="#sobre" class="botao botao-principal">Conheça a LGTF</a>
-    <a href="#servicos" class="botao">Nossos serviços</a>
-  </div>
+    <div class="hero-content reveal">
+        <div class="hero-tag">LEADING GLOBAL TECHNOLOGY'S FUTURE</div>
+        <h1>Transformando ideias em <span>objetos reais.</span></h1>
+        <p>
+            Criatividade, tecnologia e impressão 3D para transformar
+            projetos em peças únicas. Conheça a LGTF e descubra novas
+            possibilidades.
+        </p>
+        <div class="hero-buttons">
+            <a href="#loja" class="btn">Conhecer a loja</a>
+            <a href="#empresa" class="btn btn-outline">Conhecer a LGTF</a>
+        </div>
+    </div>
 </section>
 
-<section id="sobre">
-  <div class="sobre">
-    <div>
-      <div class="etiqueta">QUEM SOMOS</div>
-      <h2>Mais ideias.<br><span class="destaque">Mais tecnologia.</span></h2>
+<section class="about" id="empresa">
+    <div class="container">
+        <h2 class="section-title">Sobre a <span>LGTF</span></h2>
+        <p class="section-subtitle">
+            Uma iniciativa que une criatividade, tecnologia e vontade de inovar.
+        </p>
 
-      <p>
-        A LGTF é uma iniciativa criada por jovens interessados
-        em tecnologia, inovação e empreendedorismo.
-      </p>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <h3>O futuro começa com uma ideia.</h3>
+                <p>
+                    A LGTF — Leading Global Technology's Future — nasceu
+                    da união de jovens interessados em tecnologia,
+                    inovação e criação.
+                </p>
+                <p>
+                    Nosso foco é desenvolver e comercializar objetos
+                    produzidos por impressão 3D, unindo criatividade,
+                    utilidade e personalidade.
+                </p>
+                <p>
+                    Queremos transformar ideias em produtos que possam
+                    fazer parte do dia a dia das pessoas.
+                </p>
+            </div>
 
-      <p>
-        Nosso objetivo é desenvolver soluções criativas,
-        aprender constantemente e transformar boas ideias
-        em projetos tecnológicos.
-      </p>
-
-      <p>
-        Estamos construindo nossa história, um projeto de cada vez.
-      </p>
+            <div class="about-panel reveal">
+                <div class="about-symbol">◇</div>
+                <h3>LGTF</h3>
+                <p>Leading Global Technology's Future</p>
+            </div>
+        </div>
     </div>
-
-    <div class="painel-visual">✧</div>
-  </div>
 </section>
 
 <section id="servicos">
-  <div class="titulo-secao">
-    <div class="etiqueta">O QUE FAZEMOS</div>
-    <h2>Nossos <span class="destaque">serviços</span></h2>
-    <p>Conheça as áreas em que queremos desenvolver soluções.</p>
-  </div>
+    <div class="container">
+        <h2 class="section-title">Nossos <span>Serviços</span></h2>
+        <p class="section-subtitle">
+            Criamos peças que combinam criatividade e tecnologia.
+        </p>
 
-  <div class="grade">
-    <article class="cartao">
-      <div class="icone">💻</div>
-      <h3>Desenvolvimento de sites</h3>
-      <p>Criação de páginas e experiências digitais para diferentes projetos.</p>
-    </article>
+        <div class="services-grid">
+            <article class="info-card reveal">
+                <div class="card-icon">🖨️</div>
+                <h3>Impressão 3D</h3>
+                <p>
+                    Produção de objetos tridimensionais com diferentes
+                    formatos, detalhes e aplicações.
+                </p>
+            </article>
 
-    <article class="cartao">
-      <div class="icone">🎨</div>
-      <h3>Design digital</h3>
-      <p>Interfaces modernas, identidade visual e criatividade.</p>
-    </article>
+            <article class="info-card reveal">
+                <div class="card-icon">🎨</div>
+                <h3>Peças personalizadas</h3>
+                <p>
+                    Desenvolvimento de peças com ideias, formatos e
+                    características escolhidas pelo cliente.
+                </p>
+            </article>
 
-    <article class="cartao">
-      <div class="icone">⚙️</div>
-      <h3>Soluções tecnológicas</h3>
-      <p>Estudo e desenvolvimento de ideias que utilizam tecnologia.</p>
-    </article>
-
-    <article class="cartao">
-      <div class="icone">🚀</div>
-      <h3>Projetos inovadores</h3>
-      <p>Planejamento e criação de projetos para explorar novas possibilidades.</p>
-    </article>
-  </div>
+            <article class="info-card reveal">
+                <div class="card-icon">💡</div>
+                <h3>Criação de projetos</h3>
+                <p>
+                    Transformação de conceitos criativos em projetos
+                    que podem ganhar forma em 3D.
+                </p>
+            </article>
+        </div>
+    </div>
 </section>
 
-<section id="equipe">
-  <div class="titulo-secao">
-    <div class="etiqueta">NOSSO TIME</div>
-    <h2>Nossa <span class="destaque">equipe</span></h2>
-    <p>Quatro integrantes trabalhando para tirar ideias do papel.</p>
-  </div>
+<section id="equipe" class="about">
+    <div class="container">
+        <h2 class="section-title">Nossa <span>Equipe</span></h2>
+        <p class="section-subtitle">
+            Quatro jovens unidos pela criatividade e pela tecnologia.
+        </p>
 
-  <div class="grade">
-    <article class="cartao">
-      <div class="icone">👨‍💻</div>
-      <h3>Integrante 1</h3>
-      <p>Desenvolvimento do site e programação.</p>
-    </article>
+        <div class="team-grid">
+            <article class="info-card team-card reveal">
+                <div class="team-avatar">👤</div>
+                <h3>Integrante 1</h3>
+                <p>Equipe LGTF</p>
+            </article>
 
-    <article class="cartao">
-      <div class="icone">💡</div>
-      <h3>Integrante 2</h3>
-      <p>Planejamento e desenvolvimento de ideias.</p>
-    </article>
+            <article class="info-card team-card reveal">
+                <div class="team-avatar">👤</div>
+                <h3>Integrante 2</h3>
+                <p>Equipe LGTF</p>
+            </article>
 
-    <article class="cartao">
-      <div class="icone">🎨</div>
-      <h3>Integrante 3</h3>
-      <p>Design e identidade visual.</p>
-    </article>
+            <article class="info-card team-card reveal">
+                <div class="team-avatar">👤</div>
+                <h3>Integrante 3</h3>
+                <p>Equipe LGTF</p>
+            </article>
 
-    <article class="cartao">
-      <div class="icone">📊</div>
-      <h3>Integrante 4</h3>
-      <p>Organização e planejamento dos projetos.</p>
-    </article>
-  </div>
-
-  <p style="text-align:center;color:var(--secundario);margin-top:20px">
-    Substitua os nomes e as responsabilidades pelos dados reais da equipe.
-  </p>
+            <article class="info-card team-card reveal">
+                <div class="team-avatar">👤</div>
+                <h3>Integrante 4</h3>
+                <p>Equipe LGTF</p>
+            </article>
+        </div>
+    </div>
 </section>
 
 <section id="projetos">
-  <div class="titulo-secao">
-    <div class="etiqueta">NOSSO TRABALHO</div>
-    <h2>Projetos em <span class="destaque">destaque</span></h2>
-    <p>Um espaço para apresentar o que a equipe está desenvolvendo.</p>
-  </div>
+    <div class="container">
+        <h2 class="section-title">Nossos <span>Projetos</span></h2>
+        <p class="section-subtitle">
+            Algumas das ideias e categorias que queremos desenvolver.
+        </p>
 
-  <div class="grade">
-    <article class="cartao projeto">
-      <div>
-        <div class="icone">🌐</div>
-        <h3>Projeto de site</h3>
-        <p>Desenvolvimento de uma experiência digital moderna.</p>
-      </div>
-      <small>PROJETO EM DESENVOLVIMENTO</small>
-    </article>
+        <div class="projects-grid">
+            <article class="info-card project-card reveal">
+                <div class="project-visual">🐉</div>
+                <div class="project-info">
+                    <h3>Miniaturas articuladas</h3>
+                    <p>
+                        Figuras criativas com partes móveis e detalhes
+                        especiais.
+                    </p>
+                </div>
+            </article>
 
-    <article class="cartao projeto">
-      <div>
-        <div class="icone">🤖</div>
-        <h3>Projeto tecnológico</h3>
-        <p>Uma ideia para explorar novas possibilidades tecnológicas.</p>
-      </div>
-      <small>IDEIA EM PLANEJAMENTO</small>
-    </article>
+            <article class="info-card project-card reveal">
+                <div class="project-visual">🔑</div>
+                <div class="project-info">
+                    <h3>Chaveiros personalizados</h3>
+                    <p>
+                        Pequenos objetos com formatos e estilos
+                        diferentes.
+                    </p>
+                </div>
+            </article>
 
-    <article class="cartao projeto">
-      <div>
-        <div class="icone">📱</div>
-        <h3>Projeto digital</h3>
-        <p>Estudo de uma solução digital para facilitar tarefas.</p>
-      </div>
-      <small>EM ESTUDO</small>
-    </article>
-  </div>
+            <article class="info-card project-card reveal">
+                <div class="project-visual">📱</div>
+                <div class="project-info">
+                    <h3>Acessórios úteis</h3>
+                    <p>
+                        Suportes e organizadores para facilitar
+                        tarefas do cotidiano.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section><!-- LOJA -->
+
+<section class="store" id="loja">
+    <div class="container">
+        <h2 class="section-title">Nossa <span>Loja</span></h2>
+        <p class="section-subtitle">
+            Confira alguns dos produtos que podem ganhar vida com a impressão 3D.
+        </p>
+
+        <div class="store-controls">
+            <input
+                type="search"
+                id="pesquisa"
+                placeholder="Pesquisar produtos..."
+                aria-label="Pesquisar produtos"
+            >
+
+            <select id="categoria" aria-label="Filtrar por categoria">
+                <option value="todos">Todas as categorias</option>
+                <option value="decoracao">Decoração</option>
+                <option value="acessorios">Acessórios</option>
+                <option value="utilidades">Utilidades</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="produtos"></div>
+
+        <div class="panel" id="favoritos">
+            <h3>♡ Meus favoritos</h3>
+            <div id="lista-favoritos">
+                <p class="empty-message">Você ainda não favoritou nenhum produto.</p>
+            </div>
+        </div>
+
+        <div class="panel" id="carrinho">
+            <h3>🛒 Meu carrinho</h3>
+            <div id="lista-carrinho">
+                <p class="empty-message">Seu carrinho está vazio.</p>
+            </div>
+
+            <p class="cart-total" id="total-carrinho">
+                Total: R$ 0,00
+            </p>
+        </div>
+    </div>
 </section>
 
-<section id="loja">
-  <div class="titulo-secao">
-    <div class="etiqueta">LOJA LGTF</div>
-    <h2>Nossa <span class="destaque">loja</span></h2>
-    <p>Cadastre aqui os produtos reais que a empresa pretende oferecer.</p>
-  </div>
+<!-- NOVIDADES -->
 
-  <div class="controles">
-    <input
-      type="search"
-      id="pesquisa"
-      placeholder="Pesquisar produto..."
-      oninput="mostrarProdutos()"
-    >
+<section class="news" id="novidades">
+    <div class="container">
+        <h2 class="section-title">Novidades <span>LGTF</span></h2>
 
-    <select id="categoria" onchange="mostrarProdutos()">
-      <option value="todos">Todas as categorias</option>
-      <option value="tecnologia">Tecnologia</option>
-      <option value="acessorios">Acessórios</option>
-      <option value="outros">Outros</option>
-    </select>
-  </div>
-
-  <div id="produtos" class="grade"></div>
-
-  <p style="text-align:center;color:var(--secundario);margin-top:18px">
-    Os produtos e preços precisam ser cadastrados antes de disponibilizar a loja.
-  </p>
+        <div class="news-box reveal">
+            <h3>Novas ideias estão sendo criadas!</h3>
+            <p>
+                Estamos trabalhando em novos modelos, objetos personalizados
+                e projetos de impressão 3D. Em breve, mais novidades por aqui!
+            </p>
+        </div>
+    </div>
 </section>
 
-<section id="favoritos">
-  <div class="titulo-secao">
-    <div class="etiqueta">SUA SELEÇÃO</div>
-    <h2>Meus <span class="destaque">favoritos</span></h2>
-    <p>Produtos que você marcou para consultar depois.</p>
-  </div>
-
-  <div id="lista-favoritos" class="grade"></div>
-</section>
-
-<section id="carrinho">
-  <div class="titulo-secao">
-    <div class="etiqueta">SEU PEDIDO</div>
-    <h2>Meu <span class="destaque">carrinho</span></h2>
-    <p>Confira os produtos selecionados.</p>
-  </div>
-
-  <div class="cartao">
-    <div id="itens-carrinho"></div>
-    <div class="total" id="valor-total">Total: R$ 0,00</div>
-    <button class="botao botao-principal" onclick="finalizarPedido()">
-      Continuar pedido
-    </button>
-    <p id="mensagem" role="status" aria-live="polite"></p>
-    <p style="color:var(--secundario);font-size:12px">
-      Este carrinho é demonstrativo. Não realiza pagamentos nem confirma compras.
-    </p>
-  </div>
-</section>
-
-<section id="novidades">
-  <div class="titulo-secao">
-    <div class="etiqueta">FIQUE POR DENTRO</div>
-    <h2>Novidades da <span class="destaque">LGTF</span></h2>
-    <p>Acompanhe as atualizações e os próximos projetos da empresa.</p>
-  </div>
-
-  <div class="grade">
-    <article class="cartao">
-      <div class="icone">✨</div>
-      <h3>Nova identidade</h3>
-      <p>Estamos desenvolvendo a identidade visual da LGTF.</p>
-    </article>
-
-    <article class="cartao">
-      <div class="icone">🛠️</div>
-      <h3>Novos projetos</h3>
-      <p>Novas ideias estão sendo planejadas pela equipe.</p>
-    </article>
-
-    <article class="cartao">
-      <div class="icone">🚀</div>
-      <h3>Novas possibilidades</h3>
-      <p>Nosso objetivo é continuar aprendendo e evoluindo.</p>
-    </article>
-  </div>
-</section>
+<!-- FAQ -->
 
 <section id="faq">
-  <div class="titulo-secao">
-    <div class="etiqueta">DÚVIDAS</div>
-    <h2>Perguntas <span class="destaque">frequentes</span></h2>
-  </div>
+    <div class="container">
+        <h2 class="section-title">Perguntas <span>Frequentes</span></h2>
+        <p class="section-subtitle">
+            Algumas respostas para conhecer melhor nossos produtos.
+        </p>
 
-  <div class="faq-item">
-    <button class="faq-pergunta" onclick="abrirFaq(this)">
-      O que significa LGTF? +
-    </button>
-    <div class="faq-resposta">
-      LGTF significa Leading Global Technology's Future.
-    </div>
-  </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                O que é impressão 3D?
+                <span>＋</span>
+            </button>
+            <div class="faq-answer">
+                É um processo de fabricação que cria objetos tridimensionais
+                a partir de um modelo digital, adicionando material em camadas.
+            </div>
+        </div>
 
-  <div class="faq-item">
-    <button class="faq-pergunta" onclick="abrirFaq(this)">
-      O que a LGTF pretende fazer? +
-    </button>
-    <div class="faq-resposta">
-      A empresa está sendo desenvolvida para trabalhar com ideias,
-      projetos e soluções relacionadas à tecnologia.
-    </div>
-  </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Posso pedir um produto personalizado?
+                <span>＋</span>
+            </button>
+            <div class="faq-answer">
+                Sim! Você pode entrar em contato para conversar sobre sua ideia
+                e verificar a possibilidade de produzir uma peça personalizada.
+            </div>
+        </div>
 
-  <div class="faq-item">
-    <button class="faq-pergunta" onclick="abrirFaq(this)">
-      Como posso conhecer os projetos? +
-    </button>
-    <div class="faq-resposta">
-      Você pode acompanhar a seção de projetos deste site.
-    </div>
-  </div>
+        <div class="faq-item">
+            <button class="faq-question">
+                Os produtos são feitos pela LGTF?
+                <span>＋</span>
+            </button>
+            <div class="faq-answer">
+                A proposta da LGTF é desenvolver e oferecer produtos criados
+                com impressão 3D. Consulte a disponibilidade de cada peça.
+            </div>
+        </div>
 
-  <div class="faq-item">
-    <button class="faq-pergunta" onclick="abrirFaq(this)">
-      A loja já aceita pagamentos? +
-    </button>
-    <div class="faq-resposta">
-      Não. O carrinho é demonstrativo. A loja precisa de uma integração
-      segura de pagamentos antes de aceitar compras reais.
+        <div class="faq-item">
+            <button class="faq-question">
+                Como posso saber o preço de um produto?
+                <span>＋</span>
+            </button>
+            <div class="faq-answer">
+                Entre em contato com a equipe para consultar valores,
+                disponibilidade e detalhes do produto desejado.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                Posso sugerir uma ideia?
+                <span>＋</span>
+            </button>
+            <div class="faq-answer">
+                Claro! Envie sua sugestão pelo formulário de contato.
+                Será um prazer conhecer sua ideia.
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<section id="contato">
-  <div class="titulo-secao">
-    <div class="etiqueta">FALE CONOSCO</div>
-    <h2>Entre em <span class="destaque">contato</span></h2>
-    <p>Envie uma mensagem de demonstração para testar o formulário.</p>
-  </div>
-<form action="https://formsubmit.co/gabriellorenzorocha16@gmail.com" method="POST">
+<!-- CONTATO -->
 
-  <input type="text" name="nome"
-    placeholder="Seu nome" required>
+<section class="contact" id="contato">
+    <div class="container">
+        <h2 class="section-title">Entre em <span>Contato</span></h2>
 
-  <input type="email" name="email"
-    placeholder="Seu e-mail" required>
+        <p class="section-subtitle">
+            Tem uma ideia, dúvida ou quer conhecer nossos produtos?
+            Envie uma mensagem para a equipe LGTF.
+        </p>
 
-  <textarea name="mensagem"
-    placeholder="Escreva sua mensagem..."
-    required></textarea>
+        <form
+            class="contact-form"
+            id="form-contato"
+            action="https://formsubmit.co/gabriellorenzorocha16@gmail.com"
+            method="POST"
+        >
+            <input
+                type="hidden"
+                name="_subject"
+                value="Nova mensagem pelo site LGTF"
+            >
 
-  <input type="hidden" name="_subject"
-    value="Nova mensagem - LGTF">
+            <input
+                type="hidden"
+                name="_captcha"
+                value="true"
+            >
 
-  <button class="botao botao-principal" type="submit">
-    Enviar mensagem
-  </button>
+            <input
+                type="text"
+                name="nome"
+                placeholder="Seu nome"
+                required
+            >
 
-</form>
+            <input
+                type="email"
+                name="email"
+                placeholder="Seu e-mail"
+                required
+            >
 
+            <textarea
+                name="mensagem"
+                placeholder="Escreva sua mensagem..."
+                required
+            ></textarea>
 
+            <button type="submit" class="btn">
+                Enviar mensagem
+            </button>
+        </form>
+    </div>
+</section>
 
-<p>Leading Global Technology's Future</p>
-  <p>Inovação, criatividade e divesão.</p>
-  <p>© <span id="ano"></span> LGTF. Todos os direitos reservados.</p>
-  <p>Site institucional em desenvolvimento.</p>
+</main>
+
+<!-- RODAPÉ -->
+
+<footer>
+    <p>
+        © <span id="ano"></span>
+        <span>LGTF — Leading Global Technology's Future.</span>
+        Todos os direitos reservados.
+    </p>
+
+    <p>Transformando criatividade em realidade.</p>
 </footer>
 
-<button id="topo" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
-  ↑
-</button>
+<button id="topButton" aria-label="Voltar ao topo">↑</button>
+
+<!-- JAVASCRIPT -->
 
 <script>
-// ==================================
-// CADASTRO DE PRODUTOS
-// ==================================
-
-// Edite os nomes, descrições e preços.
-// O preço 0 indica que o produto ainda não foi cadastrado.
-// Não coloque produtos ou preços inventados como se fossem reais.
+/* PRODUTOS */
 
 const produtos = [
-  {
-    id: 1,
-    nome: "Cadastrar produto 1",
-    descricao: ".",
-    preco: 0,
-    categoria: "tecnologia",
-    icone: "💻"
-  },
-  {
-    id: 2,
-    nome: "Cadastrar produto 2",
-    descricao: ".",
-    preco: 0,
-    categoria: "acessorios",
-    icone: "🎧"
-  },
-  {
-    id: 3,
-    nome: "Cadastrar produto 3",
-    descricao: ".",
-    preco: 0,
-    categoria: "outros",
-    icone: "✨"
-  }
-
-
-
-
-
-
-
+    {
+        id: 1,
+        nome: "Miniatura articulada",
+        descricao: "Peça criativa com partes móveis.",
+        preco: 0,
+        categoria: "decoracao",
+        icone: "🐉"
+    },
+    {
+        id: 2,
+        nome: "Chaveiro personalizado",
+        descricao: "Um acessório com seu estilo.",
+        preco: 0,
+        categoria: "acessorios",
+        icone: "🔑"
+    },
+    {
+        id: 3,
+        nome: "Suporte para celular",
+        descricao: "Uma peça prática para o dia a dia.",
+        preco: 0,
+        categoria: "utilidades",
+        icone: "📱"
+    },
+    {
+        id: 4,
+        nome: "Organizador de mesa",
+        descricao: "Ajuda a organizar seu espaço.",
+        preco: 0,
+        categoria: "utilidades",
+        icone: "🗂️"
+    },
+    {
+        id: 5,
+        nome: "Miniatura decorativa",
+        descricao: "Uma peça para decorar seu ambiente.",
+        preco: 0,
+        categoria: "decoracao",
+        icone: "🏠"
+    },
+    {
+        id: 6,
+        nome: "Acessório personalizado",
+        descricao: "Uma criação feita para sua ideia.",
+        preco: 0,
+        categoria: "acessorios",
+        icone: "✨"
+    }
 ];
 
-let carrinho = [];
 let favoritos = [];
+let carrinho = [];
 
-function moeda(valor) {
-  return valor.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-  });
+/* FORMATAÇÃO DE PREÇO */
+
+function formatarPreco(valor) {
+    return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
 }
 
-function mensagem(texto) {
-  document.getElementById("mensagem").textContent = texto;
-}
+/* MOSTRAR PRODUTOS */
 
 function mostrarProdutos() {
-  const busca = document.getElementById("pesquisa").value.toLowerCase();
-  const categoria = document.getElementById("categoria").value;
-  const area = document.getElementById("produtos");
+    const area = document.getElementById("produtos");
+    const pesquisa = document
+        .getElementById("pesquisa")
+        .value
+        .toLowerCase()
+        .trim();
 
-  const filtrados = produtos.filter(p => {
-    const combinaBusca =
-      p.nome.toLowerCase().includes(busca) ||
-      p.descricao.toLowerCase().includes(busca);
+    const categoria = document.getElementById("categoria").value;
 
-    const combinaCategoria =
-      categoria === "todos" || p.categoria === categoria;
+    const filtrados = produtos.filter(produto => {
+        const correspondeNome =
+            produto.nome.toLowerCase().includes(pesquisa);
 
-    return combinaBusca && combinaCategoria;
-  });
+        const correspondeDescricao =
+            produto.descricao.toLowerCase().includes(pesquisa);
 
-  if (filtrados.length === 0) {
-    area.innerHTML = '<p>Nenhum produto encontrado.</p>';
-    return;
-  }
+        const correspondeCategoria =
+            categoria === "todos" ||
+            produto.categoria === categoria;
 
-  area.innerHTML = filtrados.map(p => `
-    <article class="cartao produto">
-      <div class="produto-icone">${p.icone}</div>
-      <h3>${p.nome}</h3>
-      <p>${p.descricao}</p>
-      <div class="preco">
-        ${p.preco > 0 ? moeda(p.preco) : "Preço não cadastrado"}
-      </div>
+        return (
+            (correspondeNome || correspondeDescricao) &&
+            correspondeCategoria
+        );
+    });
 
-      <div class="acoes-produto">
-        <button class="botao pequeno"
-          onclick="adicionarCarrinho(${p.id})">
-          Adicionar
-        </button>
+    area.innerHTML = "";
 
-        <button class="botao pequeno"
-          onclick="alternarFavorito(${p.id})"
-          aria-label="Adicionar aos favoritos">
-          ${favoritos.includes(p.id) ? "♥" : "♡"}
-        </button>
-      </div>
-    </article>
-  `).join("");
+    if (filtrados.length === 0) {
+        area.innerHTML =
+            '<p class="empty-message">Nenhum produto encontrado.</p>';
+        return;
+    }
+
+    filtrados.forEach(produto => {
+        const favoritado = favoritos.includes(produto.id);
+
+        const card = document.createElement("article");
+        card.className = "product-card reveal visible";
+
+        card.innerHTML = `
+            <div class="product-image">
+                ${produto.icone}
+            </div>
+
+            <div class="product-info">
+                <h3>${produto.nome}</h3>
+
+                <p>${produto.descricao}</p>
+
+                <div class="product-price">
+                    ${produto.preco > 0
+                        ? formatarPreco(produto.preco)
+                        : "Consulte o preço"}
+                </div>
+
+                <div class="product-actions">
+                    <button
+                        class="small-btn"
+                        onclick="adicionarCarrinho(${produto.id})"
+                    >
+                        🛒 Adicionar
+                    </button>
+
+                    <button
+                        class="small-btn favorite-btn ${favoritado ? "active" : ""}"
+                        onclick="alternarFavorito(${produto.id})"
+                    >
+                        ${favoritado ? "♥ Favoritado" : "♡ Favoritar"}
+                    </button>
+                </div>
+            </div>
+        `;
+
+        area.appendChild(card);
+    });
 }
 
-function adicionarCarrinho(id) {
-  const produto = produtos.find(p => p.id === id);
+/* PESQUISA E FILTRO */
 
-  if (!produto || produto.preco <= 0) {
-    mensagem("Cadastre um preço real para adicionar este produto.");
-    return;
-  }
+document
+    .getElementById("pesquisa")
+    .addEventListener("input", mostrarProdutos);
 
-  const existente = carrinho.find(item => item.id === id);
+document
+    .getElementById("categoria")
+    .addEventListener("change", mostrarProdutos);
 
-  if (existente) {
-    existente.quantidade++;
-  } else {
-    carrinho.push({...produto, quantidade: 1});
-  }
-
-  mostrarCarrinho();
-  mensagem(produto.nome + " foi adicionado ao carrinho!");
-}
-
-function removerCarrinho(id) {
-  carrinho = carrinho.filter(item => item.id !== id);
-  mostrarCarrinho();
-  mensagem("Produto removido do carrinho.");
-}
-
-function alterarQuantidade(id, variacao) {
-  const item = carrinho.find(p => p.id === id);
-  if (!item) return;
-
-  item.quantidade += variacao;
-
-  if (item.quantidade <= 0) {
-    removerCarrinho(id);
-  } else {
-    mostrarCarrinho();
-  }
-}
-
-function mostrarCarrinho() {
-  const area = document.getElementById("itens-carrinho");
-
-  if (carrinho.length === 0) {
-    area.innerHTML = "<p>Seu carrinho está vazio.</p>";
-  } else {
-    area.innerHTML = carrinho.map(item => `
-      <div class="carrinho-linha">
-        <div>
-          <strong>${item.nome}</strong>
-          <p>${moeda(item.preco)} cada</p>
-          <p>Quantidade: ${item.quantidade}</p>
-        </div>
-
-        <div>
-          <button class="botao pequeno"
-            onclick="alterarQuantidade(${item.id}, 1)">+</button>
-
-          <button class="botao pequeno"
-            onclick="alterarQuantidade(${item.id}, -1)">-</button>
-
-          <button class="botao pequeno"
-            onclick="removerCarrinho(${item.id})">Excluir</button>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  const total = carrinho.reduce(
-    (soma, item) => soma + item.preco * item.quantidade, 0
-  );
-
-  document.getElementById("valor-total").textContent =
-    "Total: " + moeda(total);
-}
-
-function finalizarPedido() {
-  if (carrinho.length === 0) {
-    mensagem("Adicione um produto antes de continuar.");
-    return;
-  }
-
-  mensagem(
-    "Seu resumo está pronto! A finalização e o pagamento ainda precisam ser configurados."
-  );
-}
+/* FAVORITOS */
 
 function alternarFavorito(id) {
-  if (favoritos.includes(id)) {
-    favoritos = favoritos.filter(item => item !== id);
-  } else {
-    favoritos.push(id);
-  }
+    if (favoritos.includes(id)) {
+        favoritos = favoritos.filter(item => item !== id);
+    } else {
+        favoritos.push(id);
+    }
 
-  mostrarProdutos();
-  mostrarFavoritos();
+    mostrarProdutos();
+    mostrarFavoritos();
 }
 
 function mostrarFavoritos() {
-  const area = document.getElementById("lista-favoritos");
-  const selecionados = produtos.filter(p => favoritos.includes(p.id));
+    const area = document.getElementById("lista-favoritos");
 
-  if (selecionados.length === 0) {
-    area.innerHTML = "<p>Você ainda não adicionou favoritos.</p>";
-    return;
-  }
+    area.innerHTML = "";
 
-  area.innerHTML = selecionados.map(p => `
-    <article class="cartao">
-      <div class="icone">${p.icone}</div>
-      <h3>${p.nome}</h3>
-      <p>${p.preco > 0 ? moeda(p.preco) : "Preço não cadastrado"}</p>
-      <button class="botao pequeno"
-        onclick="alternarFavorito(${p.id})">
-        Remover dos favoritos
-      </button>
-    </article>
-  `).join("");
-}
+    if (favoritos.length === 0) {
+        area.innerHTML =
+            '<p class="empty-message">Você ainda não favoritou nenhum produto.</p>';
+        return;
+    }
 
-function abrirFaq(botao) {
-  const resposta = botao.nextElementSibling;
-  resposta.classList.toggle("aberta");
-}
+    favoritos.forEach(id => {
+        const produto = produtos.find(item => item.id === id);
 
-// Alternar tema
-function alternarTema() {
-  document.body.classList.toggle("claro");
-}
+        if (!produto) return;
 
-// Formulário demonstrativo
-document.getElementById("form-contato").addEventListener("submit", function(event) {
-  event.preventDefault();
+        const item = document.createElement("div");
+        item.className = "cart-item";
 
-  document.getElementById("resposta-contato").textContent =
-    "Formulário testado! Para receber mensagens de verdade, conecte um serviço de envio.";
+        item.innerHTML = `
+            <span>${produto.icone} ${produto.nome}</span>
 
-  this.reset();
-});
+            <button
+                class="small-btn"
+                onclick="alternarFavorito(${produto.id})"
+            >
+                Remover
+            </button>
+        `;
 
-// Botão voltar ao topo
-window.addEventListener("scroll", () => {
-  document.getElementById("topo").style.display =
-    window.scrollY > 400 ? "block" : "none";
-});
-
-// Animações de entrada
-if ("IntersectionObserver" in window) {
-  const observador = new IntersectionObserver((elementos) => {
-    elementos.forEach(elemento => {
-      if (elemento.isIntersecting) {
-        elemento.target.classList.add("visivel");
-        observador.unobserve(elemento.target);
-      }
+        area.appendChild(item);
     });
-  }, {threshold: 0.1});
-
-  document.querySelectorAll("section").forEach(secao => {
-    secao.classList.add("revelar");
-    observador.observe(secao);
-  });
 }
 
-// Ano automático
-document.getElementById("ano").textContent = new Date().getFullYear();
+/* CARRINHO */
 
-// Inicialização
+function adicionarCarrinho(id) {
+    const produto = produtos.find(item => item.id === id);
+
+    if (!produto) return;
+
+    const existente = carrinho.find(item => item.id === id);
+
+    if (existente) {
+        existente.quantidade++;
+    } else {
+        carrinho.push({
+            id: produto.id,
+            quantidade: 1
+        });
+    }
+
+    mostrarCarrinho();
+}
+
+function removerCarrinho(id) {
+    carrinho = carrinho.filter(item => item.id !== id);
+    mostrarCarrinho();
+}
+
+function alterarQuantidade(id, quantidade) {
+    const item = carrinho.find(produto => produto.id === id);
+
+    if (!item) return;
+
+    item.quantidade += quantidade;
+
+    if (item.quantidade <= 0) {
+        removerCarrinho(id);
+        return;
+    }
+
+    mostrarCarrinho();
+}
+
+function mostrarCarrinho() {
+    const area = document.getElementById("lista-carrinho");
+    const totalArea = document.getElementById("total-carrinho");
+
+    area.innerHTML = "";
+
+    if (carrinho.length === 0) {
+        area.innerHTML =
+            '<p class="empty-message">Seu carrinho está vazio.</p>';
+
+        totalArea.textContent = "Total: R$ 0,00";
+        return;
+    }
+
+    let total = 0;
+
+    carrinho.forEach(item => {
+        const produto = produtos.find(p => p.id === item.id);
+
+        if (!produto) return;
+
+        total += produto.preco * item.quantidade;
+
+        const elemento = document.createElement("div");
+        elemento.className = "cart-item";
+
+        elemento.innerHTML = `
+            <div>
+                <strong>${produto.icone} ${produto.nome}</strong>
+                <p class="empty-message">
+                    Quantidade: ${item.quantidade}
+                </p>
+            </div>
+
+            <div>
+                <button
+                    class="small-btn"
+                    onclick="alterarQuantidade(${item.id}, -1)"
+                >
+                    −
+                </button>
+
+                <button
+                    class="small-btn"
+                    onclick="alterarQuantidade(${item.id}, 1)"
+                >
+                    +
+                </button>
+
+                <button
+                    class="small-btn"
+                    onclick="removerCarrinho(${item.id})"
+                >
+                    Remover
+                </button>
+            </div>
+        `;
+
+        area.appendChild(elemento);
+    });
+
+    totalArea.textContent = "Total: " + formatarPreco(total);
+}
+
+/* MENU PARA CELULAR */
+
+document.getElementById("menuBtn").addEventListener("click", () => {
+    document.getElementById("navLinks").classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+    });
+});
+
+/* TEMA CLARO E ESCURO */
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    const modoClaro = document.body.classList.contains("light");
+
+    document.getElementById("themeBtn").textContent =
+        modoClaro ? "🌙 Tema escuro" : "☀️ Tema claro";
+});
+
+/* FAQ */
+
+document.querySelectorAll(".faq-question").forEach(botao => {
+    botao.addEventListener("click", () => {
+        const item = botao.parentElement;
+
+        item.classList.toggle("open");
+
+        const simbolo = botao.querySelector("span");
+
+        simbolo.textContent =
+            item.classList.contains("open") ? "−" : "＋";
+    });
+});
+
+/* ANIMAÇÕES AO ROLAR A PÁGINA */
+
+const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+        }
+    });
+}, {
+    threshold: 0.12
+});
+
+document.querySelectorAll(".reveal").forEach(elemento => {
+    observador.observe(elemento);
+});
+
+/* BOTÃO VOLTAR AO TOPO */
+
+const topButton = document.getElementById("topButton");
+
+window.addEventListener("scroll", () => {
+    topButton.style.display =
+        window.scrollY > 400 ? "block" : "none";
+});
+
+topButton.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+/* ANO AUTOMÁTICO */
+
+document.getElementById("ano").textContent =
+    new Date().getFullYear();
+
+/* INICIALIZAÇÃO */
+
 mostrarProdutos();
-mostrarCarrinho();
 mostrarFavoritos();
+mostrarCarrinho();
+
 </script>
 
 </body>
