@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LGTF | Tecnologia do Futuro</title>
+
+<style>
+:root {
+  --fundo: #070b18;
+  --painel: #101a30;
+  --texto: #f2f7ff;
+  --secundario: #a8b6cc;
+  --neon: #00eaff;
+  --roxo: #7857ff;
+  --borda: rgba(0,234,255,.2);
+}
+
+body.claro {
+  --fundo: #edf3fb;
+  --painel: #ffffff;
+  --texto: #14213a;
+  --secundario: #52617a;
+  --neon: #007caa;
+  --roxo: #6343d8;
+  --borda: rgba(0,100,160,.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0,234,255,.10), transparent 30%),
+    radial-gradient(circle at 85% 60%, rgba(120,87,255,.12), transparent 30%),
+    var(--fundo);
+  color: var(--texto);
+  transition: background .3s, color .3s;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,11,24,.92);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--borda);
+}
+
+body.claro header {
+  background: rgba(255,255,255,.92);
+}
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 17px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  color: var(--neon);
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px var(--neon);
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 17px;
+}
+
+.menu a {
+  font-size: 13px;
+  color: var(--secundario);
+  transition: .3s;
+}
+
+.menu a:hover {
+  color: var(--neon);
+}
+
+.botao {
+  display: inline-block;
+  padding: 13px 21px;
+  border: 1px solid var(--neon);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--neon);
+  font-weight: bold;
+  transition: .3s;
+}
+
+.botao:hover {
+  background: var(--neon);
+  color: #06101b;
+  box-shadow: 0 0 22px rgba(0,234,255,.4);
+  transform: translateY(-3px);
+}
+
+.botao-principal {
+  background: var(--neon);
+  color: #06101b;
+}
+
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 85px 5%;
+}
+
+.hero {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.etiqueta {
+  color: var(--neon);
+  border: 1px solid var(--borda);
+  background: var(--painel);
+  padding: 9px 17px;
+  border-radius: 30px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 8vw, 82px);
+  max-width: 900px;
+  line-height: 1.05;
+  margin-bottom: 22px;
+}
+
+.destaque {
+  color: var(--neon);
+  text-shadow: 0 0 25px rgba(0,234,255,.35);
+}
+
+.hero p {
+  color: var(--secundario);
+  max-width: 650px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.titulo-secao {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.titulo-secao h2 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin-bottom: 13px;
+}
+
+.titulo-secao p {
+  color: var(--secundario);
+  line-height: 1.7;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.cartao {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 25px;
+  transition: .3s;
+}
+
+.cartao:hover {
+  transform: translateY(-8px);
+  border-color: var(--neon);
+  box-shadow: 0 0 25px rgba(0,234,255,.12);
+}
+
+.icone {
+  font-size: 35px;
+  margin-bottom: 17px;
+}
+
+.cartao h3 {
+  margin-bottom: 12px;
+  color: var(--neon);
+}
+
+.cartao p {
+  color: var(--secundario);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.sobre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.sobre h2 {
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.sobre p {
+  color: var(--secundario);
+  line-height: 1.9;
+  margin-bottom: 15px;
+}
+
+.painel-visual {
+  min-height: 300px;
+  border: 1px solid var(--borda);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,234,255,.12), rgba(120,87,255,.16));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 90px;
+  text-shadow: 0 0 35px var(--neon);
+}
+
+.projeto {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projeto small {
+  color: var(--neon);
+  margin-top: 18px;
+}
+
+.ferramentas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.ferramentas span {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--borda);
+  color: var(--neon);
+  font-size: 12px;
+}
+
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.controles input, .controles select {
+  padding: 13px;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  color: var(--texto);
+  min-width: 200px;
+}
+
+.produto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.produto-icone {
+  height: 130px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 55px;
+  background: linear-gradient(135deg, rgba(0,234,255,.12), rgba(120,87,255,.15));
+}
+
+.preco {
+  color: var(--neon);
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.acoes-produto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.acoes-produto button {
+  flex: 1;
+}
+
+.pequeno {
+  padding: 10px;
+  font-size: 12px;
+}
+
+#mensagem {
+  color: var(--neon);
+  text-align: center;
+  min-height: 24px;
+  margin: 15px 0;
+}
+
+.carrinho-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+.carrinho-linha button {
+  padding: 7px 10px;
+}
+
+.total {
+  font-size: 23px;
+  font-weight: bold;
+  color: var(--neon);
+  margin: 22px 0;
+}
+
+.faq-item {
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.faq-pergunta {
+  width: 100%;
+  padding: 18px;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  text-align: left;
+  color: var(--texto);
+  font-weight: bold;
+}
+
+.faq-resposta {
+  display: none;
+  padding: 17px;
+  color: var(--secundario);
+  line-height: 1.7;
+}
+
+.faq-resposta.aberta {
+  display: block;
+}
+
+form {
+  max-width: 650px;
+  margin: auto;
+  display: grid;
+  gap: 15px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--borda);
+  background: var(--painel);
+  border-radius: 9px;
+  color: var(--texto);
+}
+
+form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid var(--borda);
+  padding: 35px 5%;
+  color: var(--secundario);
+  line-height: 2;
+}
+
+#topo {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 90;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--neon);
+  background: var(--painel);
+  color: var(--neon);
+  font-size: 23px;
+  display: none;
+}
+
+.revelar {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media(max-width: 800px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .menu {
+    justify-content: center;
+  }
+
+  .sobre {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 65px 6%;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+
+  .revelar {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <a href="#inicio" class="logo">LGTF.</a>
+
+    <div class="menu">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Empresa</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#loja">Loja</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+    <button class="botao pequeno" onclick="alternarTema()">
+      Alterar tema
+    </button>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="etiqueta">TECNOLOGIA • INOVAÇÃO • FUTURO</div>
+
+  <h1>
+    O futuro começa <span class="destaque">agora.</span>
+  </h1>
+
+  <p>
+    Somos a LGTF — Leading Global Technology's Future.
+    Uma empresa em desenvolvimento, com ideias, criatividade
+    e tecnologia para construir novas possibilidades.
+  </p>
+
+  <div class="botoes">
+    <a href="#sobre" class="botao botao-principal">Conheça a LGTF</a>
+    <a href="#servicos" class="botao">Nossos serviços</a>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="sobre">
+    <div>
+      <div class="etiqueta">QUEM SOMOS</div>
+      <h2>Mais ideias.<br><span class="destaque">Mais tecnologia.</span></h2>
+
+      <p>
+        A LGTF é uma iniciativa criada por jovens interessados
+        em tecnologia, inovação e empreendedorismo.
+      </p>
+
+      <p>
+        Nosso objetivo é desenvolver soluções criativas,
+        aprender constantemente e transformar boas ideias
+        em projetos tecnológicos.
+      </p>
+
+      <p>
+        Estamos construindo nossa história, um projeto de cada vez.
+      </p>
+    </div>
+
+    <div class="painel-visual">✧</div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="titulo-secao">
+    <div class="etiqueta">O QUE FAZEMOS</div>
+    <h2>Nossos <span class="destaque">serviços</span></h2>
+    <p>Conheça as áreas em que queremos desenvolver soluções.</p>
+  </div>
+
+  <div class="grade">
+    <article class="cartao">
+      <div class="icone">💻</div>
+      <h3>Desenvolvimento de sites</h3>
+      <p>Criação de páginas e experiências digitais para diferentes projetos.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">🎨</div>
+      <h3>Design digital</h3>
+      <p>Interfaces modernas, identidade visual e criatividade.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">⚙️</div>
+      <h3>Soluções tecnológicas</h3>
+      <p>Estudo e desenvolvimento de ideias que utilizam tecnologia.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">🚀</div>
+      <h3>Projetos inovadores</h3>
+      <p>Planejamento e criação de projetos para explorar novas possibilidades.</p>
+    </article>
+  </div>
+</section>
+
+<section id="equipe">
+  <div class="titulo-secao">
+    <div class="etiqueta">NOSSO TIME</div>
+    <h2>Nossa <span class="destaque">equipe</span></h2>
+    <p>Quatro integrantes trabalhando para tirar ideias do papel.</p>
+  </div>
+
+  <div class="grade">
+    <article class="cartao">
+      <div class="icone">👨‍💻</div>
+      <h3>Integrante 1</h3>
+      <p>Desenvolvimento do site e programação.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">💡</div>
+      <h3>Integrante 2</h3>
+      <p>Planejamento e desenvolvimento de ideias.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">🎨</div>
+      <h3>Integrante 3</h3>
+      <p>Design e identidade visual.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">📊</div>
+      <h3>Integrante 4</h3>
+      <p>Organização e planejamento dos projetos.</p>
+    </article>
+  </div>
+
+  <p style="text-align:center;color:var(--secundario);margin-top:20px">
+    Substitua os nomes e as responsabilidades pelos dados reais da equipe.
+  </p>
+</section>
+
+<section id="projetos">
+  <div class="titulo-secao">
+    <div class="etiqueta">NOSSO TRABALHO</div>
+    <h2>Projetos em <span class="destaque">destaque</span></h2>
+    <p>Um espaço para apresentar o que a equipe está desenvolvendo.</p>
+  </div>
+
+  <div class="grade">
+    <article class="cartao projeto">
+      <div>
+        <div class="icone">🌐</div>
+        <h3>Projeto de site</h3>
+        <p>Desenvolvimento de uma experiência digital moderna.</p>
+      </div>
+      <small>PROJETO EM DESENVOLVIMENTO</small>
+    </article>
+
+    <article class="cartao projeto">
+      <div>
+        <div class="icone">🤖</div>
+        <h3>Projeto tecnológico</h3>
+        <p>Uma ideia para explorar novas possibilidades tecnológicas.</p>
+      </div>
+      <small>IDEIA EM PLANEJAMENTO</small>
+    </article>
+
+    <article class="cartao projeto">
+      <div>
+        <div class="icone">📱</div>
+        <h3>Projeto digital</h3>
+        <p>Estudo de uma solução digital para facilitar tarefas.</p>
+      </div>
+      <small>EM ESTUDO</small>
+    </article>
+  </div>
+</section>
+
+<section id="loja">
+  <div class="titulo-secao">
+    <div class="etiqueta">LOJA LGTF</div>
+    <h2>Nossa <span class="destaque">loja</span></h2>
+    <p>Cadastre aqui os produtos reais que a empresa pretende oferecer.</p>
+  </div>
+
+  <div class="controles">
+    <input
+      type="search"
+      id="pesquisa"
+      placeholder="Pesquisar produto..."
+      oninput="mostrarProdutos()"
+    >
+
+    <select id="categoria" onchange="mostrarProdutos()">
+      <option value="todos">Todas as categorias</option>
+      <option value="tecnologia">Tecnologia</option>
+      <option value="acessorios">Acessórios</option>
+      <option value="outros">Outros</option>
+    </select>
+  </div>
+
+  <div id="produtos" class="grade"></div>
+
+  <p style="text-align:center;color:var(--secundario);margin-top:18px">
+    Os produtos e preços precisam ser cadastrados antes de disponibilizar a loja.
+  </p>
+</section>
+
+<section id="favoritos">
+  <div class="titulo-secao">
+    <div class="etiqueta">SUA SELEÇÃO</div>
+    <h2>Meus <span class="destaque">favoritos</span></h2>
+    <p>Produtos que você marcou para consultar depois.</p>
+  </div>
+
+  <div id="lista-favoritos" class="grade"></div>
+</section>
+
+<section id="carrinho">
+  <div class="titulo-secao">
+    <div class="etiqueta">SEU PEDIDO</div>
+    <h2>Meu <span class="destaque">carrinho</span></h2>
+    <p>Confira os produtos selecionados.</p>
+  </div>
+
+  <div class="cartao">
+    <div id="itens-carrinho"></div>
+    <div class="total" id="valor-total">Total: R$ 0,00</div>
+    <button class="botao botao-principal" onclick="finalizarPedido()">
+      Continuar pedido
+    </button>
+    <p id="mensagem" role="status" aria-live="polite"></p>
+    <p style="color:var(--secundario);font-size:12px">
+      Este carrinho é demonstrativo. Não realiza pagamentos nem confirma compras.
+    </p>
+  </div>
+</section>
+
+<section id="novidades">
+  <div class="titulo-secao">
+    <div class="etiqueta">FIQUE POR DENTRO</div>
+    <h2>Novidades da <span class="destaque">LGTF</span></h2>
+    <p>Acompanhe as atualizações e os próximos projetos da empresa.</p>
+  </div>
+
+  <div class="grade">
+    <article class="cartao">
+      <div class="icone">✨</div>
+      <h3>Nova identidade</h3>
+      <p>Estamos desenvolvendo a identidade visual da LGTF.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">🛠️</div>
+      <h3>Novos projetos</h3>
+      <p>Novas ideias estão sendo planejadas pela equipe.</p>
+    </article>
+
+    <article class="cartao">
+      <div class="icone">🚀</div>
+      <h3>Novas possibilidades</h3>
+      <p>Nosso objetivo é continuar aprendendo e evoluindo.</p>
+    </article>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="titulo-secao">
+    <div class="etiqueta">DÚVIDAS</div>
+    <h2>Perguntas <span class="destaque">frequentes</span></h2>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-pergunta" onclick="abrirFaq(this)">
+      O que significa LGTF? +
+    </button>
+    <div class="faq-resposta">
+      LGTF significa Leading Global Technology's Future.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-pergunta" onclick="abrirFaq(this)">
+      O que a LGTF pretende fazer? +
+    </button>
+    <div class="faq-resposta">
+      A empresa está sendo desenvolvida para trabalhar com ideias,
+      projetos e soluções relacionadas à tecnologia.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-pergunta" onclick="abrirFaq(this)">
+      Como posso conhecer os projetos? +
+    </button>
+    <div class="faq-resposta">
+      Você pode acompanhar a seção de projetos deste site.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-pergunta" onclick="abrirFaq(this)">
+      A loja já aceita pagamentos? +
+    </button>
+    <div class="faq-resposta">
+      Não. O carrinho é demonstrativo. A loja precisa de uma integração
+      segura de pagamentos antes de aceitar compras reais.
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="titulo-secao">
+    <div class="etiqueta">FALE CONOSCO</div>
+    <h2>Entre em <span class="destaque">contato</span></h2>
+    <p>Envie uma mensagem de demonstração para testar o formulário.</p>
+  </div>
+
+  <form id="form-contato">
+    <input type="text" id="nome" placeholder="Seu nome" required>
+    <input type="email" id="email" placeholder="Seu e-mail" required>
+    <textarea id="texto-mensagem" placeholder="Escreva sua mensagem..." required></textarea>
+    <button class="botao botao-principal" type="submit">
+      Enviar mensagem
+    </button>
+    <p id="resposta-contato" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo">LGTF.</div>
+  <p>Leading Global Technology's Future</p>
+  <p>Inovação, criatividade e tecnologia.</p>
+  <p>© <span id="ano"></span> LGTF. Todos os direitos reservados.</p>
+  <p>Site institucional em desenvolvimento.</p>
+</footer>
+
+<button id="topo" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">
+  ↑
+</button>
+
+<script>
+// ==================================
+// CADASTRO DE PRODUTOS
+// ==================================
+
+// Edite os nomes, descrições e preços.
+// O preço 0 indica que o produto ainda não foi cadastrado.
+// Não coloque produtos ou preços inventados como se fossem reais.
+
+const produtos = [
+  {
+    id: 1,
+    nome: "Cadastrar produto 1",
+    descricao: "Edite esta descrição com informações reais.",
+    preco: 0,
+    categoria: "tecnologia",
+    icone: "💻"
+  },
+  {
+    id: 2,
+    nome: "Cadastrar produto 2",
+    descricao: "Edite esta descrição com informações reais.",
+    preco: 0,
+    categoria: "acessorios",
+    icone: "🎧"
+  },
+  {
+    id: 3,
+    nome: "Cadastrar produto 3",
+    descricao: "Edite esta descrição com informações reais.",
+    preco: 0,
+    categoria: "outros",
+    icone: "✨"
+  }
+];
+
+let carrinho = [];
+let favoritos = [];
+
+function moeda(valor) {
+  return valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function mensagem(texto) {
+  document.getElementById("mensagem").textContent = texto;
+}
+
+function mostrarProdutos() {
+  const busca = document.getElementById("pesquisa").value.toLowerCase();
+  const categoria = document.getElementById("categoria").value;
+  const area = document.getElementById("produtos");
+
+  const filtrados = produtos.filter(p => {
+    const combinaBusca =
+      p.nome.toLowerCase().includes(busca) ||
+      p.descricao.toLowerCase().includes(busca);
+
+    const combinaCategoria =
+      categoria === "todos" || p.categoria === categoria;
+
+    return combinaBusca && combinaCategoria;
+  });
+
+  if (filtrados.length === 0) {
+    area.innerHTML = '<p>Nenhum produto encontrado.</p>';
+    return;
+  }
+
+  area.innerHTML = filtrados.map(p => `
+    <article class="cartao produto">
+      <div class="produto-icone">${p.icone}</div>
+      <h3>${p.nome}</h3>
+      <p>${p.descricao}</p>
+      <div class="preco">
+        ${p.preco > 0 ? moeda(p.preco) : "Preço não cadastrado"}
+      </div>
+
+      <div class="acoes-produto">
+        <button class="botao pequeno"
+          onclick="adicionarCarrinho(${p.id})">
+          Adicionar
+        </button>
+
+        <button class="botao pequeno"
+          onclick="alternarFavorito(${p.id})"
+          aria-label="Adicionar aos favoritos">
+          ${favoritos.includes(p.id) ? "♥" : "♡"}
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
+
+function adicionarCarrinho(id) {
+  const produto = produtos.find(p => p.id === id);
+
+  if (!produto || produto.preco <= 0) {
+    mensagem("Cadastre um preço real para adicionar este produto.");
+    return;
+  }
+
+  const existente = carrinho.find(item => item.id === id);
+
+  if (existente) {
+    existente.quantidade++;
+  } else {
+    carrinho.push({...produto, quantidade: 1});
+  }
+
+  mostrarCarrinho();
+  mensagem(produto.nome + " foi adicionado ao carrinho!");
+}
+
+function removerCarrinho(id) {
+  carrinho = carrinho.filter(item => item.id !== id);
+  mostrarCarrinho();
+  mensagem("Produto removido do carrinho.");
+}
+
+function alterarQuantidade(id, variacao) {
+  const item = carrinho.find(p => p.id === id);
+  if (!item) return;
+
+  item.quantidade += variacao;
+
+  if (item.quantidade <= 0) {
+    removerCarrinho(id);
+  } else {
+    mostrarCarrinho();
+  }
+}
+
+function mostrarCarrinho() {
+  const area = document.getElementById("itens-carrinho");
+
+  if (carrinho.length === 0) {
+    area.innerHTML = "<p>Seu carrinho está vazio.</p>";
+  } else {
+    area.innerHTML = carrinho.map(item => `
+      <div class="carrinho-linha">
+        <div>
+          <strong>${item.nome}</strong>
+          <p>${moeda(item.preco)} cada</p>
+          <p>Quantidade: ${item.quantidade}</p>
+        </div>
+
+        <div>
+          <button class="botao pequeno"
+            onclick="alterarQuantidade(${item.id}, 1)">+</button>
+
+          <button class="botao pequeno"
+            onclick="alterarQuantidade(${item.id}, -1)">-</button>
+
+          <button class="botao pequeno"
+            onclick="removerCarrinho(${item.id})">Excluir</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  const total = carrinho.reduce(
+    (soma, item) => soma + item.preco * item.quantidade, 0
+  );
+
+  document.getElementById("valor-total").textContent =
+    "Total: " + moeda(total);
+}
+
+function finalizarPedido() {
+  if (carrinho.length === 0) {
+    mensagem("Adicione um produto antes de continuar.");
+    return;
+  }
+
+  mensagem(
+    "Seu resumo está pronto! A finalização e o pagamento ainda precisam ser configurados."
+  );
+}
+
+function alternarFavorito(id) {
+  if (favoritos.includes(id)) {
+    favoritos = favoritos.filter(item => item !== id);
+  } else {
+    favoritos.push(id);
+  }
+
+  mostrarProdutos();
+  mostrarFavoritos();
+}
+
+function mostrarFavoritos() {
+  const area = document.getElementById("lista-favoritos");
+  const selecionados = produtos.filter(p => favoritos.includes(p.id));
+
+  if (selecionados.length === 0) {
+    area.innerHTML = "<p>Você ainda não adicionou favoritos.</p>";
+    return;
+  }
+
+  area.innerHTML = selecionados.map(p => `
+    <article class="cartao">
+      <div class="icone">${p.icone}</div>
+      <h3>${p.nome}</h3>
+      <p>${p.preco > 0 ? moeda(p.preco) : "Preço não cadastrado"}</p>
+      <button class="botao pequeno"
+        onclick="alternarFavorito(${p.id})">
+        Remover dos favoritos
+      </button>
+    </article>
+  `).join("");
+}
+
+function abrirFaq(botao) {
+  const resposta = botao.nextElementSibling;
+  resposta.classList.toggle("aberta");
+}
+
+// Alternar tema
+function alternarTema() {
+  document.body.classList.toggle("claro");
+}
+
+// Formulário demonstrativo
+document.getElementById("form-contato").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  document.getElementById("resposta-contato").textContent =
+    "Formulário testado! Para receber mensagens de verdade, conecte um serviço de envio.";
+
+  this.reset();
+});
+
+// Botão voltar ao topo
+window.addEventListener("scroll", () => {
+  document.getElementById("topo").style.display =
+    window.scrollY > 400 ? "block" : "none";
+});
+
+// Animações de entrada
+if ("IntersectionObserver" in window) {
+  const observador = new IntersectionObserver((elementos) => {
+    elementos.forEach(elemento => {
+      if (elemento.isIntersecting) {
+        elemento.target.classList.add("visivel");
+        observador.unobserve(elemento.target);
+      }
+    });
+  }, {threshold: 0.1});
+
+  document.querySelectorAll("section").forEach(secao => {
+    secao.classList.add("revelar");
+    observador.observe(secao);
+  });
+}
+
+// Ano automático
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+// Inicialização
+mostrarProdutos();
+mostrarCarrinho();
+mostrarFavoritos();
+</script>
+
+</body>
+</html>
