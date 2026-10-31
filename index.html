@@ -3,687 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="LGTF - Leading Global Technology's Future. Impressão 3D e criatividade.">
-<title>LGTF | Impressão 3D</title>
+<title>Lordex3D | Impressão 3D</title>
 
 <style>
 :root {
-    --bg: #080b16;
-    --bg2: #101629;
-    --card: #111a30;
-    --text: #f4f7ff;
-    --muted: #aab6ce;
-    --primary: #00e5ff;
-    --secondary: #8b5cf6;
-    --border: rgba(0,229,255,.2);
-    --shadow: 0 0 25px rgba(0,229,255,.12);
+    --bg: #080d18;
+    --card: #111b2d;
+    --text: #ffffff;
+    --muted: #b9c6d8;
+    --blue: #00cfff;
+    --green: #00d98b;
 }
-
-body.light {
-    --bg: #f1f5fb;
-    --bg2: #e5edf8;
-    --card: #ffffff;
-    --text: #111827;
-    --muted: #526078;
-    --primary: #007eaa;
-    --secondary: #7041c5;
-    --border: rgba(0,126,170,.2);
-    --shadow: 0 5px 25px rgba(0,0,0,.08);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: var(--text);
+    font-family: Arial, sans-serif;
     line-height: 1.6;
-    transition: .3s;
 }
-
-a {
-    text-decoration: none;
-    color: inherit;
+body.claro {
+    --bg: #f1f5fa;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #526078;
 }
-
-button, input, select, textarea {
-    font: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
 header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
     z-index: 1000;
-    background: rgba(8,11,22,.92);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    border-bottom: 1px solid var(--blue);
+    padding: 15px 5%;
 }
-
-body.light header {
-    background: rgba(255,255,255,.92);
-}
-
-.navbar {
-    max-width: 1200px;
-    margin: auto;
-    padding: 15px 25px;
+.nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap;
 }
-
 .logo {
     font-size: 27px;
-    font-weight: 900;
-    color: var(--primary);
-    letter-spacing: 3px;
-    text-shadow: 0 0 15px var(--primary);
-}
-
-.nav-links {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    list-style: none;
-}
-
-.nav-links a {
-    font-size: 13px;
-    color: var(--text);
-    transition: .3s;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.theme-btn, .menu-btn {
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--primary);
-    padding: 9px 13px;
-    border-radius: 8px;
-}
-
-.menu-btn {
-    display: none;
-}
-
-section {
-    padding: 100px 8%;
-    scroll-margin-top: 65px;
-}
-
-.container {
-    max-width: 1150px;
-    margin: auto;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 34px;
-    margin-bottom: 15px;
-}
-
-.section-title span {
-    color: var(--primary);
-}
-
-.section-subtitle {
-    text-align: center;
-    color: var(--muted);
-    max-width: 650px;
-    margin: 0 auto 45px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 13px 25px;
-    border: 1px solid var(--primary);
-    border-radius: 8px;
-    background: var(--primary);
-    color: #06111a;
     font-weight: bold;
-    transition: .3s;
+    color: var(--blue);
+    letter-spacing: 2px;
 }
-
-.btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 22px var(--primary);
-}
-
-.btn-outline {
-    background: transparent;
-    color: var(--primary);
-}
-
-/* INÍCIO */
-
-.hero {
-    min-height: 100vh;
+nav {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 130px;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(0,229,255,.13), transparent 35%),
-        radial-gradient(circle at 80% 70%, rgba(139,92,246,.16), transparent 35%),
-        var(--bg);
-}
-
-.hero-content {
-    max-width: 850px;
-}
-
-.hero-tag {
-    color: var(--primary);
-    letter-spacing: 4px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.hero h1 {
-    font-size: clamp(40px, 7vw, 75px);
-    line-height: 1.1;
-    margin: 20px 0;
-}
-
-.hero h1 span {
-    color: var(--primary);
-    text-shadow: 0 0 25px rgba(0,229,255,.5);
-}
-
-.hero p {
-    max-width: 650px;
-    margin: 0 auto 30px;
-    color: var(--muted);
-    font-size: 17px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
-    flex-wrap: wrap;
-}
-
-/* EMPRESA */
-
-.about {
-    background: var(--bg2);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 45px;
     align-items: center;
 }
-
-.about-text p {
-    color: var(--muted);
-    margin: 15px 0;
-}
-
-.about-panel {
-    min-height: 300px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background:
-        radial-gradient(circle, rgba(0,229,255,.18), transparent 65%),
-        var(--card);
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-}
-
-.about-symbol {
-    font-size: 75px;
-    color: var(--primary);
-    text-shadow: 0 0 25px var(--primary);
-}
-
-.about-panel h3 {
-    font-size: 25px;
-    margin-top: 10px;
-}
-
-.about-panel p {
-    color: var(--muted);
-}
-
-/* SERVIÇOS, EQUIPE E PROJETOS */
-
-.services-grid, .team-grid, .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.info-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 28px;
-    transition: .3s;
-    box-shadow: var(--shadow);
-}
-
-.info-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--primary);
-}
-
-.card-icon {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
-.info-card h3 {
-    margin-bottom: 10px;
-    color: var(--primary);
-}
-
-.info-card p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.team-card {
-    text-align: center;
-}
-
-.team-avatar {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 18px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 35px;
-    color: var(--primary);
-    background: var(--bg2);
-    border: 2px solid var(--primary);
-    box-shadow: 0 0 18px rgba(0,229,255,.2);
-}
-
-.project-card {
-    overflow: hidden;
-    padding: 0;
-}
-
-.project-visual {
-    height: 170px;
-    display: grid;
-    place-items: center;
-    font-size: 65px;
-    background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(139,92,246,.2));
-}
-
-.project-info {
-    padding: 22px;
-}
-
-.project-info h3 {
-    color: var(--primary);
-    margin-bottom: 8px;
-}
-
-.project-info p {
-    color: var(--muted);
-    font-size: 14px;
-}/* RESPONSIVIDADE */
-
-@media (max-width: 900px) {
-    .nav-links {
-        gap: 10px;
-    }
-
-    .nav-links a {
-        font-size: 11px;
-    }
-
-    .services-grid,
-    .team-grid,
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 700px) {
-    .navbar {
-        flex-wrap: wrap;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 0;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .services-grid,
-    .team-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    section {
-        padding: 80px 6%;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-    }
-}
-
-/* LOJA */
-
-.store {
-    background: var(--bg2);
-}
-
-.store-controls {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-.store-controls input,
-.store-controls select {
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--card);
-    color: var(--text);
-    min-width: 220px;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-.product-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: .3s;
-}
-
-.product-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--primary);
-    box-shadow: var(--shadow);
-}
-
-.product-image {
-    height: 180px;
-    display: grid;
-    place-items: center;
-    font-size: 65px;
-    background: linear-gradient(135deg, rgba(0,229,255,.15), rgba(139,92,246,.2));
-}
-
-.product-info {
-    padding: 20px;
-}
-
-.product-info h3 {
-    color: var(--primary);
-    margin-bottom: 8px;
-}
-
-.product-info p {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 12px;
-}
-
-.product-price {
-    font-size: 19px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.product-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.small-btn {
-    padding: 9px 12px;
-    border-radius: 7px;
-    border: 1px solid var(--primary);
-    color: var(--primary);
+nav a:hover { color: var(--blue); }
+.nav button, .menu-btn {
     background: transparent;
+    color: var(--text);
+    border: 1px solid var(--blue);
+    padding: 8px 12px;
+    border-radius: 8px;
 }
-
-.small-btn:hover {
-    background: var(--primary);
-    color: #06111a;
-}
-
-.favorite-btn.active {
-    background: var(--secondary);
-    color: white;
-    border-color: var(--secondary);
-}
-
-/* FAVORITOS E CARRINHO */
-
-.panel {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 25px;
-    margin-top: 25px;
-}
-
-.panel h3 {
-    color: var(--primary);
+section { padding: 75px 8%; scroll-margin-top: 90px; }
+h2 {
+    text-align: center;
+    color: var(--blue);
+    font-size: 32px;
     margin-bottom: 15px;
 }
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-}
-
-.cart-item:last-child {
-    border-bottom: none;
-}
-
-.cart-total {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 15px;
-    color: var(--primary);
-}
-
-.empty-message {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-/* NOVIDADES */
-
-.news {
-    background: var(--bg2);
-}
-
-.news-box {
-    max-width: 750px;
-    margin: auto;
+.subtitulo {
     text-align: center;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 35px;
-    box-shadow: var(--shadow);
-}
-
-.news-box h3 {
-    color: var(--primary);
-    margin-bottom: 12px;
-}
-
-.news-box p {
     color: var(--muted);
+    margin-bottom: 35px;
 }
-
-/* FAQ */
-
+.hero {
+    min-height: 490px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 50% 30%, #06446a 0%, transparent 60%),
+      linear-gradient(135deg, #080d18, #101a30);
+}
+.hero h1 {
+    font-size: clamp(38px, 7vw, 65px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+.hero h1 span { color: var(--blue); }
+.hero p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 0 auto 25px;
+}
+.botao {
+    display: inline-block;
+    background: linear-gradient(90deg, #007bff, #00cfff);
+    color: white;
+    border: 0;
+    border-radius: 9px;
+    padding: 13px 22px;
+    font-weight: bold;
+    margin: 5px;
+    transition: .25s;
+}
+.botao:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px #00cfff80;
+}
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: var(--card);
+    border: 1px solid #087ba0;
+    border-radius: 16px;
+    padding: 24px;
+    transition: .25s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 18px #00cfff30;
+}
+.card h3 { color: var(--blue); margin: 10px 0; }
+.card p { color: var(--muted); }
+.icone { font-size: 38px; }
+.destaque { color: var(--green); font-weight: bold; }
+#loja, #avaliacoes { background: #0b1322; }
+body.claro #loja, body.claro #avaliacoes { background: #e7edf5; }
+.controles {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+input, select, textarea {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid #1689ad;
+    border-radius: 8px;
+    padding: 13px;
+    width: 100%;
+}
+.controles input { flex: 2; min-width: 180px; }
+.controles select { flex: 1; min-width: 160px; }
+.produto { text-align: center; }
+.produto .foto {
+    min-height: 120px;
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+    background: #071629;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+.acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 12px;
+}
+.acoes button {
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--blue);
+    background: transparent;
+    color: var(--text);
+}
+.acoes button:hover { background: #087ba0; }
+.formulario {
+    max-width: 600px;
+    margin: auto;
+    background: var(--card);
+    padding: 25px;
+    border: 1px solid var(--blue);
+    border-radius: 15px;
+}
+.formulario input, .formulario select, .formulario textarea {
+    margin: 8px 0;
+}
+.formulario textarea { min-height: 110px; }
+.formulario button { width: 100%; }
+.cupom-codigo {
+    color: var(--green);
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    border: 2px dashed var(--green);
+    padding: 12px;
+    margin: 18px 0;
+}
+#resultadoCupom, #mensagemAvaliacao { margin-top: 12px; }
+.estrelas { color: #ffd700; font-size: 23px; }
 .faq-item {
     background: var(--card);
-    border: 1px solid var(--border);
     border-radius: 10px;
-    margin-bottom: 12px;
-    overflow: hidden;
+    padding: 16px;
+    margin: 10px auto;
+    max-width: 750px;
 }
-
-.faq-question {
-    width: 100%;
-    text-align: left;
-    padding: 17px;
-    background: transparent;
-    border: none;
-    color: var(--text);
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.faq-question:hover {
-    color: var(--primary);
-}
-
-.faq-answer {
-    display: none;
-    padding: 0 17px 17px;
-    color: var(--muted);
-}
-
-.faq-item.open .faq-answer {
-    display: block;
-}
-
-/* CONTATO E RODAPÉ */
-
-.contact {
-    background: var(--bg2);
-}
-
-.contact-form {
-    max-width: 700px;
-    margin: auto;
-    display: grid;
-    gap: 15px;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--card);
-    color: var(--text);
-    outline: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 10px rgba(0,229,255,.15);
-}
-
-.contact-form textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
+.faq-item summary { cursor: pointer; color: var(--blue); font-weight: bold; }
+.faq-item p { color: var(--muted); padding-top: 12px; }
 footer {
-    padding: 35px 8%;
     text-align: center;
-    background: var(--bg);
-    border-top: 1px solid var(--border);
+    padding: 35px 8%;
+    background: #050912;
+    color: #b9c6d8;
 }
-
-footer p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-footer span {
-    color: var(--primary);
-}
-
-/* ANIMAÇÕES */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity .7s, transform .7s;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#topButton {
+.whatsapp-btn {
     position: fixed;
+    z-index: 2000;
     right: 20px;
     bottom: 20px;
+    background: #00c875;
+    color: white;
+    border-radius: 50px;
+    padding: 13px 19px;
+    font-weight: bold;
+    box-shadow: 0 0 18px #00ff8870;
+}
+.whatsapp-btn:hover { transform: scale(1.06); }
+#topo {
+    position: fixed;
+    right: 22px;
+    bottom: 85px;
     display: none;
-    z-index: 900;
-    border: none;
-    background: var(--primary);
-    color: #06111a;
-    padding: 12px 16px;
+    border: 0;
+    background: var(--blue);
+    color: #001;
+    padding: 12px;
     border-radius: 50%;
-    font-size: 20px;
+}
+.mensagem-vazia {
+    text-align: center;
+    color: var(--muted);
+    padding: 25px;
+}
+@media(max-width: 700px) {
+    header { position: relative; }
+    .nav { justify-content: center; }
+    nav { justify-content: center; }
+    section { padding: 50px 5%; }
+    .hero { min-height: 420px; }
 }
 </style>
 </head>
@@ -691,454 +258,370 @@ footer span {
 <body>
 
 <header>
-    <nav class="navbar">
-        <a href="#inicio" class="logo">LGTF</a>
-
-        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#inicio">Início</a></li>
-            <li><a href="#empresa">Empresa</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#equipe">Equipe</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#loja">Loja</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-
-        <button class="theme-btn" id="themeBtn">☀️ / 🌙</button>
-    </nav>
+    <div class="nav">
+        <a class="logo" href="#inicio">Lordex3D</a>
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#empresa">Empresa</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#equipe">Equipe</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#loja">Loja</a>
+            <a href="#cupons">Cupons</a>
+            <a href="#pedido">Personalizados</a>
+            <a href="#avaliacoes">Avaliações</a>
+            <a href="#contato">Contato</a>
+            <button type="button" id="temaBtn">☀️/🌙</button>
+        </nav>
+    </div>
 </header>
 
 <main>
-
 <section class="hero" id="inicio">
-    <div class="hero-content reveal">
-        <div class="hero-tag">LEADING GLOBAL TECHNOLOGY'S FUTURE</div>
-        <h1>Transformando ideias em <span>objetos reais.</span></h1>
+    <div>
+        <h1>Suas ideias ganham <span>forma</span>.</h1>
         <p>
-            Criatividade, tecnologia e impressão 3D para transformar
-            projetos em peças únicas. Conheça a LGTF e descubra novas
-            possibilidades.
+            Bem-vindo à Lordex3D! Criatividade, tecnologia
+            e impressão 3D para transformar ideias em objetos.
         </p>
-        <div class="hero-buttons">
-            <a href="#loja" class="btn">Conhecer a loja</a>
-            <a href="#empresa" class="btn btn-outline">Conhecer a LGTF</a>
-        </div>
+        <a class="botao" href="#loja">Conheça a loja</a>
+        <a class="botao" href="#pedido">Peça personalizado</a>
     </div>
 </section>
 
-<section class="about" id="empresa">
-    <div class="container">
-        <h2 class="section-title">Sobre a <span>LGTF</span></h2>
-        <p class="section-subtitle">
-            Uma iniciativa que une criatividade, tecnologia e vontade de inovar.
-        </p>
-
-        <div class="about-grid">
-            <div class="about-text reveal">
-                <h3>O futuro começa com uma ideia.</h3>
-                <p>
-                    A LGTF — Leading Global Technology's Future — nasceu
-                    da união de jovens interessados em tecnologia,
-                    inovação e criação.
-                </p>
-                <p>
-                    Nosso foco é desenvolver e comercializar objetos
-                    produzidos por impressão 3D, unindo criatividade,
-                    utilidade e personalidade.
-                </p>
-                <p>
-                    Queremos transformar ideias em produtos que possam
-                    fazer parte do dia a dia das pessoas.
-                </p>
-            </div>
-
-            <div class="about-panel reveal">
-                <div class="about-symbol">◇</div>
-                <h3>LGTF</h3>
-                <p>Leading Global Technology's Future</p>
-            </div>
-        </div>
+<section id="empresa">
+    <h2>Sobre a Lordex3D</h2>
+    <p class="subtitulo">
+        Uma equipe apaixonada por tecnologia, criatividade e impressão 3D.
+    </p>
+    <div class="grade">
+        <article class="card">
+            <div class="icone">💡</div>
+            <h3>Nossa ideia</h3>
+            <p>Transformar ideias criativas em peças físicas por meio da impressão 3D.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🎯</div>
+            <h3>Nosso objetivo</h3>
+            <p>Criar produtos úteis, divertidos e personalizados.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🚀</div>
+            <h3>Nosso futuro</h3>
+            <p>Aprender, inovar e desenvolver novos projetos tecnológicos.</p>
+        </article>
     </div>
 </section>
 
 <section id="servicos">
-    <div class="container">
-        <h2 class="section-title">Nossos <span>Serviços</span></h2>
-        <p class="section-subtitle">
-            Criamos peças que combinam criatividade e tecnologia.
-        </p>
-
-        <div class="services-grid">
-            <article class="info-card reveal">
-                <div class="card-icon">🖨️</div>
-                <h3>Impressão 3D</h3>
-                <p>
-                    Produção de objetos tridimensionais com diferentes
-                    formatos, detalhes e aplicações.
-                </p>
-            </article>
-
-            <article class="info-card reveal">
-                <div class="card-icon">🎨</div>
-                <h3>Peças personalizadas</h3>
-                <p>
-                    Desenvolvimento de peças com ideias, formatos e
-                    características escolhidas pelo cliente.
-                </p>
-            </article>
-
-            <article class="info-card reveal">
-                <div class="card-icon">💡</div>
-                <h3>Criação de projetos</h3>
-                <p>
-                    Transformação de conceitos criativos em projetos
-                    que podem ganhar forma em 3D.
-                </p>
-            </article>
-        </div>
+    <h2>Nossos serviços</h2>
+    <p class="subtitulo">Conheça o que podemos criar.</p>
+    <div class="grade">
+        <article class="card">
+            <div class="icone">🖨️</div>
+            <h3>Impressão 3D</h3>
+            <p>Produção de objetos por impressão tridimensional.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🎨</div>
+            <h3>Personalização</h3>
+            <p>Peças pensadas de acordo com cada ideia.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🧩</div>
+            <h3>Miniaturas e acessórios</h3>
+            <p>Criações decorativas e objetos para o cotidiano.</p>
+        </article>
     </div>
 </section>
 
-<section id="equipe" class="about">
-    <div class="container">
-        <h2 class="section-title">Nossa <span>Equipe</span></h2>
-        <p class="section-subtitle">
-            Quatro jovens unidos pela criatividade e pela tecnologia.
-        </p>
-
-        <div class="team-grid">
-            <article class="info-card team-card reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Integrante 1</h3>
-                <p>Equipe LGTF</p>
-            </article>
-
-            <article class="info-card team-card reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Integrante 2</h3>
-                <p>Equipe LGTF</p>
-            </article>
-
-            <article class="info-card team-card reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Integrante 3</h3>
-                <p>Equipe LGTF</p>
-            </article>
-
-            <article class="info-card team-card reveal">
-                <div class="team-avatar">👤</div>
-                <h3>Integrante 4</h3>
-                <p>Equipe LGTF</p>
-            </article>
-        </div>
+<section id="equipe">
+    <h2>Nossa equipe</h2>
+    <p class="subtitulo">Quatro pessoas, muitas ideias e vontade de criar.</p>
+    <div class="grade">
+        <article class="card"><div class="icone">👤</div><h3>Lourenzo</h3><p>Equipe Lordex3D</p></article>
+        <article class="card"><div class="icone">👤</div><h3>Gabriel</h3><p>Equipe Lordex3D</p></article>
+        <article class="card"><div class="icone">👤</div><h3>Thiago</h3><p>Equipe Lordex3D</p></article>
+        <article class="card"><div class="icone">👤</div><h3>Felipe</h3><p>Equipe Lordex3D</p></article>
     </div>
 </section>
 
 <section id="projetos">
-    <div class="container">
-        <h2 class="section-title">Nossos <span>Projetos</span></h2>
-        <p class="section-subtitle">
-            Algumas das ideias e categorias que queremos desenvolver.
-        </p>
-
-        <div class="projects-grid">
-            <article class="info-card project-card reveal">
-                <div class="project-visual">🐉</div>
-                <div class="project-info">
-                    <h3>Miniaturas articuladas</h3>
-                    <p>
-                        Figuras criativas com partes móveis e detalhes
-                        especiais.
-                    </p>
-                </div>
-            </article>
-
-            <article class="info-card project-card reveal">
-                <div class="project-visual">🔑</div>
-                <div class="project-info">
-                    <h3>Chaveiros personalizados</h3>
-                    <p>
-                        Pequenos objetos com formatos e estilos
-                        diferentes.
-                    </p>
-                </div>
-            </article>
-
-            <article class="info-card project-card reveal">
-                <div class="project-visual">📱</div>
-                <div class="project-info">
-                    <h3>Acessórios úteis</h3>
-                    <p>
-                        Suportes e organizadores para facilitar
-                        tarefas do cotidiano.
-                    </p>
-                </div>
-            </article>
-        </div>
+    <h2>Nossos projetos</h2>
+    <p class="subtitulo">Algumas ideias que podem ganhar vida.</p>
+    <div class="grade">
+        <article class="card"><div class="icone">🐉</div><h3>Dragões articulados</h3><p>Miniaturas com partes móveis.</p></article>
+        <article class="card"><div class="icone">📱</div><h3>Suportes</h3><p>Acessórios úteis para o dia a dia.</p></article>
+        <article class="card"><div class="icone">🔑</div><h3>Chaveiros</h3><p>Peças criativas e personalizadas.</p></article>
     </div>
-</section><!-- LOJA -->
+</section>
+<!-- LOJA -->
+<section id="loja">
+    <h2>Nossa loja</h2>
+    <p class="subtitulo">Encontre sua próxima criação favorita!</p>
 
-<section class="store" id="loja">
-    <div class="container">
-        <h2 class="section-title">Nossa <span>Loja</span></h2>
-        <p class="section-subtitle">
-            Confira alguns dos produtos que podem ganhar vida com a impressão 3D.
-        </p>
-
-        <div class="store-controls">
-            <input
-                type="search"
-                id="pesquisa"
-                placeholder="Pesquisar produtos..."
-                aria-label="Pesquisar produtos"
-            >
-
-            <select id="categoria" aria-label="Filtrar por categoria">
-                <option value="todos">Todas as categorias</option>
-                <option value="decoracao">Decoração</option>
-                <option value="acessorios">Acessórios</option>
-                <option value="utilidades">Utilidades</option>
-            </select>
-        </div>
-
-        <div class="products-grid" id="produtos"></div>
-
-        <div class="panel" id="favoritos">
-            <h3>♡ Meus favoritos</h3>
-            <div id="lista-favoritos">
-                <p class="empty-message">Você ainda não favoritou nenhum produto.</p>
-            </div>
-        </div>
-
-        <div class="panel" id="carrinho">
-            <h3>🛒 Meu carrinho</h3>
-            <div id="lista-carrinho">
-                <p class="empty-message">Seu carrinho está vazio.</p>
-            </div>
-
-            <p class="cart-total" id="total-carrinho">
-                Total: R$ 0,00
-            </p>
-        </div>
+    <div class="controles">
+        <input type="search" id="pesquisa" placeholder="Pesquisar produtos...">
+        <select id="categoria">
+            <option value="todos">Todas as categorias</option>
+            <option value="decoracao">Decoração</option>
+            <option value="acessorios">Acessórios</option>
+            <option value="utilidades">Utilidades</option>
+        </select>
     </div>
+
+    <div class="grade" id="listaProdutos"></div>
+</section>
+
+<!-- FAVORITOS -->
+<section id="favoritos">
+    <h2>❤️ Meus favoritos</h2>
+    <p class="subtitulo">Seus produtos favoritos.</p>
+    <div class="grade" id="listaFavoritos"></div>
+</section>
+
+<!-- CARRINHO -->
+<section id="carrinho">
+    <h2>🛒 Meu carrinho</h2>
+    <p class="subtitulo">Confira os produtos selecionados.</p>
+    <div class="card" id="listaCarrinho">
+        <p class="mensagem-vazia">Seu carrinho está vazio.</p>
+    </div>
+    <h3 style="text-align:center;margin-top:20px">
+        Total: <span id="totalCarrinho">R$ 0,00</span>
+    </h3>
+    <p class="subtitulo">O carrinho é demonstrativo e não realiza pagamentos.</p>
+</section>
+
+<!-- CUPONS -->
+<section id="cupons">
+    <h2>🏷️ Cupons de desconto</h2>
+    <p class="subtitulo">Confira os códigos promocionais da Lordex3D.</p>
+
+    <div class="formulario">
+        <h3 style="color:var(--blue)">🎁 CUPOM ESPECIAL</h3>
+        <div class="cupom-codigo">LORDEX10</div>
+        <p class="subtitulo">Cupom de demonstração. Consulte a equipe sobre promoções válidas.</p>
+
+        <input id="codigoCupom" placeholder="Digite seu cupom">
+        <button class="botao" type="button" onclick="verificarCupom()">
+            Verificar cupom
+        </button>
+        <p id="resultadoCupom"></p>
+    </div>
+</section>
+
+<!-- PEDIDOS PERSONALIZADOS -->
+<section id="pedido">
+    <h2>🛠️ Monte seu pedido</h2>
+    <p class="subtitulo">Conte sua ideia para a nossa equipe!</p>
+
+    <form class="formulario" id="formPedido">
+        <input id="nomePedido" placeholder="Seu nome" required>
+        <input id="produtoPedido" placeholder="Qual produto deseja?" required>
+
+        <select id="corPedido" required>
+            <option value="">Escolha uma cor</option>
+            <option>Preto</option>
+            <option>Branco</option>
+            <option>Azul</option>
+            <option>Vermelho</option>
+            <option>Roxo</option>
+            <option>Outra cor</option>
+        </select>
+
+        <textarea id="detalhesPedido"
+            placeholder="Descreva sua ideia, tamanho ou detalhes..."
+            required></textarea>
+
+        <button class="botao" type="submit">
+            Enviar pedido pelo WhatsApp
+        </button>
+    </form>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes">
+    <h2>⭐ Avaliações dos clientes</h2>
+    <p class="subtitulo">Compartilhe sua experiência com a Lordex3D.</p>
+
+    <div id="listaAvaliacoes" class="grade">
+        <p class="mensagem-vazia">Ainda não há avaliações.</p>
+    </div>
+
+    <form class="formulario" id="formAvaliacao">
+        <h3 style="color:var(--blue);margin-bottom:15px">
+            Deixe sua avaliação
+        </h3>
+
+        <input id="nomeAvaliacao" placeholder="Seu nome" required>
+
+        <select id="notaAvaliacao" required>
+            <option value="">Escolha sua nota</option>
+            <option value="5">★★★★★ - Excelente</option>
+            <option value="4">★★★★ - Muito bom</option>
+            <option value="3">★★★ - Bom</option>
+            <option value="2">★★ - Regular</option>
+            <option value="1">★ - Precisa melhorar</option>
+        </select>
+
+        <textarea id="textoAvaliacao"
+            placeholder="Conte sua experiência..."
+            required></textarea>
+
+        <button class="botao" type="submit">Enviar avaliação</button>
+        <p id="mensagemAvaliacao"></p>
+    </form>
 </section>
 
 <!-- NOVIDADES -->
-
-<section class="news" id="novidades">
-    <div class="container">
-        <h2 class="section-title">Novidades <span>LGTF</span></h2>
-
-        <div class="news-box reveal">
-            <h3>Novas ideias estão sendo criadas!</h3>
-            <p>
-                Estamos trabalhando em novos modelos, objetos personalizados
-                e projetos de impressão 3D. Em breve, mais novidades por aqui!
-            </p>
-        </div>
+<section id="novidades">
+    <h2>✨ Novidades</h2>
+    <p class="subtitulo">Acompanhe as próximas criações da Lordex3D.</p>
+    <div class="grade">
+        <article class="card">
+            <div class="icone">🖨️</div>
+            <h3>Novas impressões</h3>
+            <p>Novas ideias e modelos em desenvolvimento.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🎨</div>
+            <h3>Novas cores</h3>
+            <p>Mais possibilidades para personalizar seus produtos.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🚀</div>
+            <h3>Novos projetos</h3>
+            <p>Estamos sempre pensando em novas criações.</p>
+        </article>
     </div>
 </section>
 
-<!-- FAQ -->
-
+<!-- PERGUNTAS FREQUENTES -->
 <section id="faq">
-    <div class="container">
-        <h2 class="section-title">Perguntas <span>Frequentes</span></h2>
-        <p class="section-subtitle">
-            Algumas respostas para conhecer melhor nossos produtos.
-        </p>
+    <h2>❓ Perguntas frequentes</h2>
+    <p class="subtitulo">Tire suas dúvidas.</p>
 
-        <div class="faq-item">
-            <button class="faq-question">
-                O que é impressão 3D?
-                <span>＋</span>
-            </button>
-            <div class="faq-answer">
-                É um processo de fabricação que cria objetos tridimensionais
-                a partir de um modelo digital, adicionando material em camadas.
-            </div>
-        </div>
+    <details class="faq-item">
+        <summary>O que é impressão 3D?</summary>
+        <p>É um processo de fabricação que cria objetos tridimensionais a partir de um modelo digital.</p>
+    </details>
 
-        <div class="faq-item">
-            <button class="faq-question">
-                Posso pedir um produto personalizado?
-                <span>＋</span>
-            </button>
-            <div class="faq-answer">
-                Sim! Você pode entrar em contato para conversar sobre sua ideia
-                e verificar a possibilidade de produzir uma peça personalizada.
-            </div>
-        </div>
+    <details class="faq-item">
+        <summary>Posso pedir um produto personalizado?</summary>
+        <p>Sim! Use o formulário de pedidos personalizados para conversar com a equipe.</p>
+    </details>
 
-        <div class="faq-item">
-            <button class="faq-question">
-                Os produtos são feitos pela LGTF?
-                <span>＋</span>
-            </button>
-            <div class="faq-answer">
-                A proposta da LGTF é desenvolver e oferecer produtos criados
-                com impressão 3D. Consulte a disponibilidade de cada peça.
-            </div>
-        </div>
+    <details class="faq-item">
+        <summary>Como consulto os preços?</summary>
+        <p>Entre em contato com a equipe para consultar valores e disponibilidade.</p>
+    </details>
 
-        <div class="faq-item">
-            <button class="faq-question">
-                Como posso saber o preço de um produto?
-                <span>＋</span>
-            </button>
-            <div class="faq-answer">
-                Entre em contato com a equipe para consultar valores,
-                disponibilidade e detalhes do produto desejado.
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">
-                Posso sugerir uma ideia?
-                <span>＋</span>
-            </button>
-            <div class="faq-answer">
-                Claro! Envie sua sugestão pelo formulário de contato.
-                Será um prazer conhecer sua ideia.
-            </div>
-        </div>
-    </div>
+    <details class="faq-item">
+        <summary>Quais cores estão disponíveis?</summary>
+        <p>As cores dependem dos materiais disponíveis no momento do pedido.</p>
+    </details>
 </section>
 
 <!-- CONTATO -->
+<section id="contato">
+    <h2>📩 Entre em contato</h2>
+    <p class="subtitulo">Envie uma mensagem para a Lordex3D.</p>
 
-<section class="contact" id="contato">
-    <div class="container">
-        <h2 class="section-title">Entre em <span>Contato</span></h2>
+    <form class="formulario"
+        action="https://formsubmit.co/gabriellorenzorocha16@gmail.com"
+        method="POST">
 
-        <p class="section-subtitle">
-            Tem uma ideia, dúvida ou quer conhecer nossos produtos?
-            Envie uma mensagem para a equipe LGTF.
-        </p>
+        <input type="hidden" name="_subject" value="Contato pelo site Lordex3D">
+        <input type="hidden" name="_captcha" value="true">
 
-        <form
-            class="contact-form"
-            id="form-contato"
-            action="https://formsubmit.co/gabriellorenzorocha16@gmail.com"
-            method="POST"
-        >
-            <input
-                type="hidden"
-                name="_subject"
-                value="Nova mensagem pelo site LGTF"
-            >
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="email" name="email" placeholder="Seu e-mail" required>
+        <textarea name="mensagem" placeholder="Sua mensagem..." required></textarea>
 
-            <input
-                type="hidden"
-                name="_captcha"
-                value="true"
-            >
-
-            <input
-                type="text"
-                name="nome"
-                placeholder="Seu nome"
-                required
-            >
-
-            <input
-                type="email"
-                name="email"
-                placeholder="Seu e-mail"
-                required
-            >
-
-            <textarea
-                name="mensagem"
-                placeholder="Escreva sua mensagem..."
-                required
-            ></textarea>
-
-            <button type="submit" class="btn">
-                Enviar mensagem
-            </button>
-        </form>
-    </div>
+        <button class="botao" type="submit">Enviar mensagem</button>
+    </form>
 </section>
 
 </main>
 
-<!-- RODAPÉ -->
-
 <footer>
-    <p>
-        © <span id="ano"></span>
-        <span>LGTF — Leading Global Technology's Future.</span>
-        Todos os direitos reservados.
-    </p>
-
-    <p>Transformando criatividade em realidade.</p>
+    <h2>Lordex3D</h2>
+    <p>Ideias que ganham forma.</p>
+    <p>Impressão 3D • Criatividade • Personalização</p>
+    <p>© <span id="ano"></span> Lordex3D. Todos os direitos reservados.</p>
 </footer>
 
-<button id="topButton" aria-label="Voltar ao topo">↑</button>
+<!-- BOTÃO WHATSAPP -->
+<a class="whatsapp-btn"
+   href="https://wa.me/5511975892003?text=Olá!%20Vim%20pelo%20site%20da%20Lordex3D!"
+   target="_blank"
+   rel="noopener noreferrer">
+    ☎ Fale conosco
+</a>
 
-<!-- JAVASCRIPT -->
-
+<button id="topo" type="button" aria-label="Voltar ao topo">↑</button>
 <script>
-/* PRODUTOS */
+// ===================================
+// CONFIGURAÇÕES
+// ===================================
 
+// TROQUE PELO WHATSAPP COMERCIAL DA EQUIPE
+const WHATSAPP = "5511975892003";
+
+// Produtos de exemplo.
+// Edite os nomes, categorias e preços quando tiver o catálogo.
 const produtos = [
     {
         id: 1,
-        nome: "Miniatura articulada",
-        descricao: "Peça criativa com partes móveis.",
-        preco: 0,
+        nome: "Dragão articulado",
         categoria: "decoracao",
-        icone: "🐉"
+        preco: 0,
+        emoji: "🐉"
     },
     {
         id: 2,
         nome: "Chaveiro personalizado",
-        descricao: "Um acessório com seu estilo.",
-        preco: 0,
         categoria: "acessorios",
-        icone: "🔑"
+        preco: 0,
+        emoji: "🔑"
     },
     {
         id: 3,
         nome: "Suporte para celular",
-        descricao: "Uma peça prática para o dia a dia.",
-        preco: 0,
         categoria: "utilidades",
-        icone: "📱"
+        preco: 0,
+        emoji: "📱"
     },
     {
         id: 4,
-        nome: "Organizador de mesa",
-        descricao: "Ajuda a organizar seu espaço.",
+        nome: "Miniatura decorativa",
+        categoria: "decoracao",
         preco: 0,
-        categoria: "utilidades",
-        icone: "🗂️"
+        emoji: "🧸"
     },
     {
         id: 5,
-        nome: "Miniatura decorativa",
-        descricao: "Uma peça para decorar seu ambiente.",
+        nome: "Organizador de mesa",
+        categoria: "utilidades",
         preco: 0,
-        categoria: "decoracao",
-        icone: "🏠"
+        emoji: "🗂️"
     },
     {
         id: 6,
-        nome: "Acessório personalizado",
-        descricao: "Uma criação feita para sua ideia.",
-        preco: 0,
+        nome: "Chaveiro especial",
         categoria: "acessorios",
-        icone: "✨"
+        preco: 0,
+        emoji: "⭐"
     }
 ];
 
 let favoritos = [];
 let carrinho = [];
 
-/* FORMATAÇÃO DE PREÇO */
+// ===================================
+// FORMATAÇÃO DE PREÇO
+// ===================================
 
 function formatarPreco(valor) {
     return valor.toLocaleString("pt-BR", {
@@ -1147,98 +630,94 @@ function formatarPreco(valor) {
     });
 }
 
-/* MOSTRAR PRODUTOS */
+// ===================================
+// MOSTRAR PRODUTOS
+// ===================================
 
 function mostrarProdutos() {
-    const area = document.getElementById("produtos");
     const pesquisa = document
         .getElementById("pesquisa")
-        .value
-        .toLowerCase()
-        .trim();
+        .value.toLowerCase();
 
-    const categoria = document.getElementById("categoria").value;
+    const categoria = document
+        .getElementById("categoria")
+        .value;
 
     const filtrados = produtos.filter(produto => {
-        const correspondeNome =
-            produto.nome.toLowerCase().includes(pesquisa);
+        const combinaNome = produto.nome
+            .toLowerCase()
+            .includes(pesquisa);
 
-        const correspondeDescricao =
-            produto.descricao.toLowerCase().includes(pesquisa);
-
-        const correspondeCategoria =
+        const combinaCategoria =
             categoria === "todos" ||
             produto.categoria === categoria;
 
-        return (
-            (correspondeNome || correspondeDescricao) &&
-            correspondeCategoria
-        );
+        return combinaNome && combinaCategoria;
     });
 
-    area.innerHTML = "";
+    const lista = document.getElementById("listaProdutos");
+    lista.innerHTML = "";
 
     if (filtrados.length === 0) {
-        area.innerHTML =
-            '<p class="empty-message">Nenhum produto encontrado.</p>';
+        lista.innerHTML =
+            '<p class="mensagem-vazia">Nenhum produto encontrado.</p>';
         return;
     }
 
     filtrados.forEach(produto => {
-        const favoritado = favoritos.includes(produto.id);
-
         const card = document.createElement("article");
-        card.className = "product-card reveal visible";
+        card.className = "card produto";
 
-        card.innerHTML = `
-            <div class="product-image">
-                ${produto.icone}
-            </div>
+        const foto = document.createElement("div");
+        foto.className = "foto";
+        foto.textContent = produto.emoji;
 
-            <div class="product-info">
-                <h3>${produto.nome}</h3>
+        const nome = document.createElement("h3");
+        nome.textContent = produto.nome;
 
-                <p>${produto.descricao}</p>
+        const preco = document.createElement("p");
+        preco.className = "destaque";
+        preco.textContent = produto.preco > 0
+            ? formatarPreco(produto.preco)
+            : "Consulte o preço";
 
-                <div class="product-price">
-                    ${produto.preco > 0
-                        ? formatarPreco(produto.preco)
-                        : "Consulte o preço"}
-                </div>
+        const acoes = document.createElement("div");
+        acoes.className = "acoes";
 
-                <div class="product-actions">
-                    <button
-                        class="small-btn"
-                        onclick="adicionarCarrinho(${produto.id})"
-                    >
-                        🛒 Adicionar
-                    </button>
+        const favoritoBtn = document.createElement("button");
+        favoritoBtn.textContent =
+            favoritos.includes(produto.id) ? "❤️ Favorito" : "♡ Favoritar";
 
-                    <button
-                        class="small-btn favorite-btn ${favoritado ? "active" : ""}"
-                        onclick="alternarFavorito(${produto.id})"
-                    >
-                        ${favoritado ? "♥ Favoritado" : "♡ Favoritar"}
-                    </button>
-                </div>
-            </div>
-        `;
+        favoritoBtn.addEventListener("click", () => {
+            alternarFavorito(produto.id);
+        });
 
-        area.appendChild(card);
+        const carrinhoBtn = document.createElement("button");
+        carrinhoBtn.textContent = "🛒 Adicionar";
+
+        carrinhoBtn.addEventListener("click", () => {
+            adicionarCarrinho(produto.id);
+        });
+
+        acoes.append(favoritoBtn, carrinhoBtn);
+        card.append(foto, nome, preco, acoes);
+        lista.appendChild(card);
     });
 }
 
-/* PESQUISA E FILTRO */
+// ===================================
+// PESQUISA E CATEGORIAS
+// ===================================
 
-document
-    .getElementById("pesquisa")
+document.getElementById("pesquisa")
     .addEventListener("input", mostrarProdutos);
 
-document
-    .getElementById("categoria")
+document.getElementById("categoria")
     .addEventListener("change", mostrarProdutos);
 
-/* FAVORITOS */
+// ===================================
+// FAVORITOS
+// ===================================
 
 function alternarFavorito(id) {
     if (favoritos.includes(id)) {
@@ -1252,53 +731,51 @@ function alternarFavorito(id) {
 }
 
 function mostrarFavoritos() {
-    const area = document.getElementById("lista-favoritos");
+    const lista = document.getElementById("listaFavoritos");
+    lista.innerHTML = "";
 
-    area.innerHTML = "";
+    const escolhidos = produtos.filter(produto =>
+        favoritos.includes(produto.id)
+    );
 
-    if (favoritos.length === 0) {
-        area.innerHTML =
-            '<p class="empty-message">Você ainda não favoritou nenhum produto.</p>';
+    if (escolhidos.length === 0) {
+        lista.innerHTML =
+            '<p class="mensagem-vazia">Você ainda não tem favoritos.</p>';
         return;
     }
 
-    favoritos.forEach(id => {
-        const produto = produtos.find(item => item.id === id);
+    escolhidos.forEach(produto => {
+        const card = document.createElement("article");
+        card.className = "card";
 
-        if (!produto) return;
+        const nome = document.createElement("h3");
+        nome.textContent = produto.emoji + " " + produto.nome;
 
-        const item = document.createElement("div");
-        item.className = "cart-item";
+        const remover = document.createElement("button");
+        remover.className = "botao";
+        remover.textContent = "Remover dos favoritos";
 
-        item.innerHTML = `
-            <span>${produto.icone} ${produto.nome}</span>
+        remover.addEventListener("click", () => {
+            alternarFavorito(produto.id);
+        });
 
-            <button
-                class="small-btn"
-                onclick="alternarFavorito(${produto.id})"
-            >
-                Remover
-            </button>
-        `;
-
-        area.appendChild(item);
+        card.append(nome, remover);
+        lista.appendChild(card);
     });
 }
 
-/* CARRINHO */
+// ===================================
+// CARRINHO
+// ===================================
 
 function adicionarCarrinho(id) {
-    const produto = produtos.find(item => item.id === id);
-
-    if (!produto) return;
-
     const existente = carrinho.find(item => item.id === id);
 
     if (existente) {
         existente.quantidade++;
     } else {
         carrinho.push({
-            id: produto.id,
+            id: id,
             quantidade: 1
         });
     }
@@ -1311,32 +788,17 @@ function removerCarrinho(id) {
     mostrarCarrinho();
 }
 
-function alterarQuantidade(id, quantidade) {
-    const item = carrinho.find(produto => produto.id === id);
-
-    if (!item) return;
-
-    item.quantidade += quantidade;
-
-    if (item.quantidade <= 0) {
-        removerCarrinho(id);
-        return;
-    }
-
-    mostrarCarrinho();
-}
-
 function mostrarCarrinho() {
-    const area = document.getElementById("lista-carrinho");
-    const totalArea = document.getElementById("total-carrinho");
+    const lista = document.getElementById("listaCarrinho");
+    const totalElemento = document.getElementById("totalCarrinho");
 
-    area.innerHTML = "";
+    lista.innerHTML = "";
 
     if (carrinho.length === 0) {
-        area.innerHTML =
-            '<p class="empty-message">Seu carrinho está vazio.</p>';
+        lista.innerHTML =
+            '<p class="mensagem-vazia">Seu carrinho está vazio.</p>';
 
-        totalArea.textContent = "Total: R$ 0,00";
+        totalElemento.textContent = formatarPreco(0);
         return;
     }
 
@@ -1344,132 +806,212 @@ function mostrarCarrinho() {
 
     carrinho.forEach(item => {
         const produto = produtos.find(p => p.id === item.id);
-
-        if (!produto) return;
-
         total += produto.preco * item.quantidade;
 
-        const elemento = document.createElement("div");
-        elemento.className = "cart-item";
+        const linha = document.createElement("div");
+        linha.style.padding = "12px";
+        linha.style.borderBottom = "1px solid #1689ad";
 
-        elemento.innerHTML = `
-            <div>
-                <strong>${produto.icone} ${produto.nome}</strong>
-                <p class="empty-message">
-                    Quantidade: ${item.quantidade}
-                </p>
-            </div>
+        const nome = document.createElement("p");
+        nome.textContent =
+            produto.emoji + " " + produto.nome +
+            " — Quantidade: " + item.quantidade;
 
-            <div>
-                <button
-                    class="small-btn"
-                    onclick="alterarQuantidade(${item.id}, -1)"
-                >
-                    −
-                </button>
+        const preco = document.createElement("p");
+        preco.textContent = produto.preco > 0
+            ? formatarPreco(produto.preco * item.quantidade)
+            : "Consulte o preço";
 
-                <button
-                    class="small-btn"
-                    onclick="alterarQuantidade(${item.id}, 1)"
-                >
-                    +
-                </button>
+        const remover = document.createElement("button");
+        remover.className = "botao";
+        remover.textContent = "Remover";
 
-                <button
-                    class="small-btn"
-                    onclick="removerCarrinho(${item.id})"
-                >
-                    Remover
-                </button>
-            </div>
-        `;
+        remover.addEventListener("click", () => {
+            removerCarrinho(item.id);
+        });
 
-        area.appendChild(elemento);
+        linha.append(nome, preco, remover);
+        lista.appendChild(linha);
     });
 
-    totalArea.textContent = "Total: " + formatarPreco(total);
+    totalElemento.textContent = formatarPreco(total);
 }
 
-/* MENU PARA CELULAR */
+// ===================================
+// CUPONS
+// ===================================
 
-document.getElementById("menuBtn").addEventListener("click", () => {
-    document.getElementById("navLinks").classList.toggle("active");
-});
+function verificarCupom() {
+    const codigo = document.getElementById("codigoCupom")
+        .value.trim().toUpperCase();
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("navLinks").classList.remove("active");
-    });
-});
+    const resultado = document.getElementById("resultadoCupom");
 
-/* TEMA CLARO E ESCURO */
+    if (codigo === "LORDEX10") {
+        resultado.textContent =
+            "Cupom reconhecido! Consulte a equipe para confirmar a promoção.";
+    } else {
+        resultado.textContent = "Cupom não encontrado.";
+    }
+}
 
-document.getElementById("themeBtn").addEventListener("click", () => {
-    document.body.classList.toggle("light");
+// ===================================
+// PEDIDOS PERSONALIZADOS
+// ===================================
 
-    const modoClaro = document.body.classList.contains("light");
+document.getElementById("formPedido")
+    .addEventListener("submit", function(event) {
 
-    document.getElementById("themeBtn").textContent =
-        modoClaro ? "🌙 Tema escuro" : "☀️ Tema claro";
-});
+        event.preventDefault();
 
-/* FAQ */
-
-document.querySelectorAll(".faq-question").forEach(botao => {
-    botao.addEventListener("click", () => {
-        const item = botao.parentElement;
-
-        item.classList.toggle("open");
-
-        const simbolo = botao.querySelector("span");
-
-        simbolo.textContent =
-            item.classList.contains("open") ? "−" : "＋";
-    });
-});
-
-/* ANIMAÇÕES AO ROLAR A PÁGINA */
-
-const observador = new IntersectionObserver((entradas) => {
-    entradas.forEach(entrada => {
-        if (entrada.isIntersecting) {
-            entrada.target.classList.add("visible");
+        if (WHATSAPP === "5511975892003") {
+            alert("Configure primeiro o número comercial do WhatsApp no código.");
+            return;
         }
+
+        const nome = document.getElementById("nomePedido").value;
+        const produto = document.getElementById("produtoPedido").value;
+        const cor = document.getElementById("corPedido").value;
+        const detalhes = document.getElementById("detalhesPedido").value;
+
+        const mensagem =
+            "Olá! Vim pelo site da Lordex3D!\n\n" +
+            "Nome: " + nome + "\n" +
+            "Produto: " + produto + "\n" +
+            "Cor: " + cor + "\n" +
+            "Detalhes: " + detalhes;
+
+        const link = "https://wa.me/" + WHATSAPP +
+            "?text=" + encodeURIComponent(mensagem);
+
+        window.open(link, "_blank");
     });
-}, {
-    threshold: 0.12
-});
 
-document.querySelectorAll(".reveal").forEach(elemento => {
-    observador.observe(elemento);
-});
+// ===================================
+// AVALIAÇÕES
+// ===================================
 
-/* BOTÃO VOLTAR AO TOPO */
+let avaliacoes = [];
 
-const topButton = document.getElementById("topButton");
+try {
+    avaliacoes = JSON.parse(
+        localStorage.getItem("lordex3d_avaliacoes") || "[]"
+    );
+    if (!Array.isArray(avaliacoes)) avaliacoes = [];
+} catch {
+    avaliacoes = [];
+}
+
+function mostrarAvaliacoes() {
+    const lista = document.getElementById("listaAvaliacoes");
+    lista.innerHTML = "";
+
+    if (avaliacoes.length === 0) {
+        lista.innerHTML =
+            '<p class="mensagem-vazia">Ainda não há avaliações.</p>';
+        return;
+    }
+
+    avaliacoes.forEach(avaliacao => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const nome = document.createElement("h3");
+        nome.textContent = avaliacao.nome;
+
+        const estrelas = document.createElement("div");
+        estrelas.className = "estrelas";
+        estrelas.textContent =
+            "★".repeat(avaliacao.nota) +
+            "☆".repeat(5 - avaliacao.nota);
+
+        const texto = document.createElement("p");
+        texto.textContent = avaliacao.texto;
+
+        card.append(nome, estrelas, texto);
+        lista.appendChild(card);
+    });
+}
+
+document.getElementById("formAvaliacao")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const nome = document.getElementById("nomeAvaliacao")
+            .value.trim();
+
+        const nota = Number(
+            document.getElementById("notaAvaliacao").value
+        );
+
+        const texto = document.getElementById("textoAvaliacao")
+            .value.trim();
+
+        if (!nome || !texto || nota < 1 || nota > 5) return;
+
+        avaliacoes.push({ nome, nota, texto });
+
+        try {
+            localStorage.setItem(
+                "lordex3d_avaliacoes",
+                JSON.stringify(avaliacoes)
+            );
+        } catch {
+            document.getElementById("mensagemAvaliacao")
+                .textContent = "Não foi possível salvar neste navegador.";
+        }
+
+        mostrarAvaliacoes();
+
+        document.getElementById("mensagemAvaliacao")
+            .textContent = "Avaliação adicionada neste navegador!";
+
+        this.reset();
+    });
+
+// ===================================
+// MODO CLARO E ESCURO
+// ===================================
+
+document.getElementById("temaBtn")
+    .addEventListener("click", () => {
+        document.body.classList.toggle("claro");
+    });
+
+// ===================================
+// VOLTAR AO TOPO
+// ===================================
+
+const botaoTopo = document.getElementById("topo");
 
 window.addEventListener("scroll", () => {
-    topButton.style.display =
-        window.scrollY > 400 ? "block" : "none";
+    botaoTopo.style.display =
+        window.scrollY > 300 ? "block" : "none";
 });
 
-topButton.addEventListener("click", () => {
+botaoTopo.addEventListener("click", () => {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 });
 
-/* ANO AUTOMÁTICO */
+// ===================================
+// ANO AUTOMÁTICO
+// ===================================
 
 document.getElementById("ano").textContent =
     new Date().getFullYear();
 
-/* INICIALIZAÇÃO */
+// ===================================
+// INICIALIZAÇÃO
+// ===================================
 
 mostrarProdutos();
 mostrarFavoritos();
 mostrarCarrinho();
+mostrarAvaliacoes();
 
 </script>
 
