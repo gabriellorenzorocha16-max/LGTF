@@ -31,42 +31,113 @@ body.claro {
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
+
+/* CABEÇALHO */
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
     background: var(--card);
     border-bottom: 1px solid var(--blue);
-    padding: 15px 5%;
+    padding: 13px 5%;
 }
 .nav {
+    max-width: 1250px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
 }
 .logo {
-    font-size: 27px;
+    font-size: 26px;
     font-weight: bold;
     color: var(--blue);
     letter-spacing: 2px;
 }
-nav {
+.acoes-topo {
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
     align-items: center;
+    gap: 10px;
 }
-nav a:hover { color: var(--blue); }
-.nav button, .menu-btn {
+.icone-topo {
+    background: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    border-radius: 9px;
+    width: 45px;
+    height: 42px;
+    font-size: 23px;
+}
+.icone-topo:hover {
+    background: #087ba0;
+    color: white;
+}
+
+/* MENU DE TRÊS RISCOS */
+nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    width: 260px;
+    max-height: 75vh;
+    overflow-y: auto;
+    padding: 15px;
+    background: var(--card);
+    border: 1px solid var(--blue);
+    border-radius: 13px;
+    box-shadow: 0 0 22px #00cfff40;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+}
+nav.aberto { display: flex; }
+nav a {
+    padding: 9px 12px;
+    border-radius: 8px;
+}
+nav a:hover {
+    color: white;
+    background: #087ba0;
+}
+nav button {
     background: transparent;
     color: var(--text);
     border: 1px solid var(--blue);
-    padding: 8px 12px;
     border-radius: 8px;
+    padding: 9px;
+    margin-top: 8px;
 }
-section { padding: 75px 8%; scroll-margin-top: 90px; }
+
+/* PESQUISA DO TOPO */
+.pesquisa-topo {
+    display: none;
+    max-width: 1250px;
+    margin: 12px auto 0;
+}
+.pesquisa-topo.aberta { display: block; }
+.pesquisa-topo input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+}
+.pesquisa-topo p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* SEÇÕES E TEXTOS */
+section {
+    padding: 75px 8%;
+    scroll-margin-top: 90px;
+}
 h2 {
     text-align: center;
     color: var(--blue);
@@ -134,8 +205,11 @@ h2 {
 .card p { color: var(--muted); }
 .icone { font-size: 38px; }
 .destaque { color: var(--green); font-weight: bold; }
+
+/* LOJA */
 #loja, #avaliacoes { background: #0b1322; }
-body.claro #loja, body.claro #avaliacoes { background: #e7edf5; }
+body.claro #loja,
+body.claro #avaliacoes { background: #e7edf5; }
 .controles {
     display: flex;
     gap: 10px;
@@ -177,6 +251,8 @@ input, select, textarea {
     color: var(--text);
 }
 .acoes button:hover { background: #087ba0; }
+
+/* FORMULÁRIOS */
 .formulario {
     max-width: 600px;
     margin: auto;
@@ -185,9 +261,9 @@ input, select, textarea {
     border: 1px solid var(--blue);
     border-radius: 15px;
 }
-.formulario input, .formulario select, .formulario textarea {
-    margin: 8px 0;
-}
+.formulario input,
+.formulario select,
+.formulario textarea { margin: 8px 0; }
 .formulario textarea { min-height: 110px; }
 .formulario button { width: 100%; }
 .cupom-codigo {
@@ -208,8 +284,14 @@ input, select, textarea {
     margin: 10px auto;
     max-width: 750px;
 }
-.faq-item summary { cursor: pointer; color: var(--blue); font-weight: bold; }
+.faq-item summary {
+    cursor: pointer;
+    color: var(--blue);
+    font-weight: bold;
+}
 .faq-item p { color: var(--muted); padding-top: 12px; }
+
+/* RODAPÉ E BOTÕES FIXOS */
 footer {
     text-align: center;
     padding: 35px 8%;
@@ -218,7 +300,7 @@ footer {
 }
 .whatsapp-btn {
     position: fixed;
-    z-index: 2000;
+    z-index: 900;
     right: 20px;
     bottom: 20px;
     background: #00c875;
@@ -246,9 +328,6 @@ footer {
     padding: 25px;
 }
 @media(max-width: 700px) {
-    header { position: relative; }
-    .nav { justify-content: center; }
-    nav { justify-content: center; }
     section { padding: 50px 5%; }
     .hero { min-height: 420px; }
 }
@@ -260,23 +339,43 @@ footer {
 <header>
     <div class="nav">
         <a class="logo" href="#inicio">Lordex3D</a>
-        <nav>
+
+        <div class="acoes-topo">
+            <button class="icone-topo" id="pesquisaBtn"
+                    type="button" aria-label="Abrir pesquisa">🔍</button>
+            <button class="icone-topo" id="menuToggle"
+                    type="button" aria-label="Abrir menu"
+                    aria-expanded="false">☰</button>
+        </div>
+
+        <nav id="menuNavegacao">
             <a href="#inicio">Início</a>
             <a href="#empresa">Empresa</a>
             <a href="#servicos">Serviços</a>
             <a href="#equipe">Equipe</a>
             <a href="#projetos">Projetos</a>
             <a href="#loja">Loja</a>
+            <a href="#favoritos">Favoritos</a>
+            <a href="#carrinho">Carrinho</a>
             <a href="#cupons">Cupons</a>
             <a href="#pedido">Personalizados</a>
             <a href="#avaliacoes">Avaliações</a>
+            <a href="#novidades">Novidades</a>
+            <a href="#faq">Dúvidas</a>
             <a href="#contato">Contato</a>
-            <button type="button" id="temaBtn">☀️/🌙</button>
+            <button type="button" id="temaBtn">☀️ / 🌙 Mudar tema</button>
         </nav>
+    </div>
+
+    <div class="pesquisa-topo" id="pesquisaTopo">
+        <input type="search" id="pesquisaGeral"
+               placeholder="O que você está procurando?">
+        <p>Digite para procurar produtos na loja.</p>
     </div>
 </header>
 
 <main>
+
 <section class="hero" id="inicio">
     <div>
         <h1>Suas ideias ganham <span>forma</span>.</h1>
@@ -339,10 +438,26 @@ footer {
     <h2>Nossa equipe</h2>
     <p class="subtitulo">Quatro pessoas, muitas ideias e vontade de criar.</p>
     <div class="grade">
-        <article class="card"><div class="icone">👤</div><h3>Lourenzo</h3><p>Equipe Lordex3D</p></article>
-        <article class="card"><div class="icone">👤</div><h3>Gabriel</h3><p>Equipe Lordex3D</p></article>
-        <article class="card"><div class="icone">👤</div><h3>Thiago</h3><p>Equipe Lordex3D</p></article>
-        <article class="card"><div class="icone">👤</div><h3>Felipe</h3><p>Equipe Lordex3D</p></article>
+        <article class="card">
+            <div class="icone">👤</div>
+            <h3>Integrante 1</h3>
+            <p>Equipe Lordex3D</p>
+        </article>
+        <article class="card">
+            <div class="icone">👤</div>
+            <h3>Integrante 2</h3>
+            <p>Equipe Lordex3D</p>
+        </article>
+        <article class="card">
+            <div class="icone">👤</div>
+            <h3>Integrante 3</h3>
+            <p>Equipe Lordex3D</p>
+        </article>
+        <article class="card">
+            <div class="icone">👤</div>
+            <h3>Integrante 4</h3>
+            <p>Equipe Lordex3D</p>
+        </article>
     </div>
 </section>
 
@@ -350,18 +465,31 @@ footer {
     <h2>Nossos projetos</h2>
     <p class="subtitulo">Algumas ideias que podem ganhar vida.</p>
     <div class="grade">
-        <article class="card"><div class="icone">🐉</div><h3>Dragões articulados</h3><p>Miniaturas com partes móveis.</p></article>
-        <article class="card"><div class="icone">📱</div><h3>Suportes</h3><p>Acessórios úteis para o dia a dia.</p></article>
-        <article class="card"><div class="icone">🔑</div><h3>Chaveiros</h3><p>Peças criativas e personalizadas.</p></article>
+        <article class="card">
+            <div class="icone">🐉</div>
+            <h3>Dragões articulados</h3>
+            <p>Miniaturas com partes móveis.</p>
+        </article>
+        <article class="card">
+            <div class="icone">📱</div>
+            <h3>Suportes</h3>
+            <p>Acessórios úteis para o dia a dia.</p>
+        </article>
+        <article class="card">
+            <div class="icone">🔑</div>
+            <h3>Chaveiros</h3>
+            <p>Peças criativas e personalizadas.</p>
+        </article>
     </div>
-</section>
-<!-- LOJA -->
+</section><!-- LOJA -->
 <section id="loja">
     <h2>Nossa loja</h2>
-    <p class="subtitulo">Encontre sua próxima criação favorita!</p>
+    <p class="subtitulo">Encontre produtos feitos com impressão 3D.</p>
 
     <div class="controles">
-        <input type="search" id="pesquisa" placeholder="Pesquisar produtos...">
+        <input type="search" id="pesquisa"
+               placeholder="Pesquisar produtos...">
+
         <select id="categoria">
             <option value="todos">Todas as categorias</option>
             <option value="decoracao">Decoração</option>
@@ -375,36 +503,42 @@ footer {
 
 <!-- FAVORITOS -->
 <section id="favoritos">
-    <h2>❤️ Meus favoritos</h2>
-    <p class="subtitulo">Seus produtos favoritos.</p>
+    <h2>Meus favoritos</h2>
+    <p class="subtitulo">Seus produtos preferidos em um só lugar.</p>
     <div class="grade" id="listaFavoritos"></div>
 </section>
 
 <!-- CARRINHO -->
 <section id="carrinho">
-    <h2>🛒 Meu carrinho</h2>
+    <h2>Meu carrinho</h2>
     <p class="subtitulo">Confira os produtos selecionados.</p>
-    <div class="card" id="listaCarrinho">
-        <p class="mensagem-vazia">Seu carrinho está vazio.</p>
+
+    <div class="card">
+        <div id="itensCarrinho"></div>
+        <hr style="margin:18px 0; border-color:#1689ad;">
+        <h3>Total: <span id="totalCarrinho">R$ 0,00</span></h3>
+        <p class="subtitulo" style="margin:10px 0;">
+            O carrinho é demonstrativo e não realiza pagamentos.
+        </p>
+        <button class="botao" id="limparCarrinho" type="button">
+            Limpar carrinho
+        </button>
     </div>
-    <h3 style="text-align:center;margin-top:20px">
-        Total: <span id="totalCarrinho">R$ 0,00</span>
-    </h3>
-    <p class="subtitulo">O carrinho é demonstrativo e não realiza pagamentos.</p>
 </section>
 
 <!-- CUPONS -->
 <section id="cupons">
-    <h2>🏷️ Cupons de desconto</h2>
-    <p class="subtitulo">Confira os códigos promocionais da Lordex3D.</p>
+    <h2>Cupons</h2>
+    <p class="subtitulo">Confira o código demonstrativo da Lordex3D.</p>
 
-    <div class="formulario">
-        <h3 style="color:var(--blue)">🎁 CUPOM ESPECIAL</h3>
+    <div class="card" style="max-width:600px; margin:auto; text-align:center;">
+        <div class="icone">🎟️</div>
+        <h3>Cupom de demonstração</h3>
         <div class="cupom-codigo">LORDEX10</div>
-        <p class="subtitulo">Cupom de demonstração. Consulte a equipe sobre promoções válidas.</p>
+        <p>Digite o código para verificar se ele é reconhecido pelo site.</p>
 
-        <input id="codigoCupom" placeholder="Digite seu cupom">
-        <button class="botao" type="button" onclick="verificarCupom()">
+        <input type="text" id="codigoCupom" placeholder="Digite seu cupom">
+        <button class="botao" id="verificarCupom" type="button">
             Verificar cupom
         </button>
         <p id="resultadoCupom"></p>
@@ -413,26 +547,21 @@ footer {
 
 <!-- PEDIDOS PERSONALIZADOS -->
 <section id="pedido">
-    <h2>🛠️ Monte seu pedido</h2>
-    <p class="subtitulo">Conte sua ideia para a nossa equipe!</p>
+    <h2>Peça personalizado</h2>
+    <p class="subtitulo">
+        Conte sua ideia para a equipe Lordex3D.
+    </p>
 
     <form class="formulario" id="formPedido">
-        <input id="nomePedido" placeholder="Seu nome" required>
-        <input id="produtoPedido" placeholder="Qual produto deseja?" required>
+        <input type="text" id="nomePedido"
+               placeholder="Seu nome" required>
 
-        <select id="corPedido" required>
-            <option value="">Escolha uma cor</option>
-            <option>Preto</option>
-            <option>Branco</option>
-            <option>Azul</option>
-            <option>Vermelho</option>
-            <option>Roxo</option>
-            <option>Outra cor</option>
-        </select>
+        <input type="text" id="produtoPedido"
+               placeholder="O que você gostaria de criar?" required>
 
         <textarea id="detalhesPedido"
-            placeholder="Descreva sua ideia, tamanho ou detalhes..."
-            required></textarea>
+                  placeholder="Descreva sua ideia, tamanho e detalhes..."
+                  required></textarea>
 
         <button class="botao" type="submit">
             Enviar pedido pelo WhatsApp
@@ -442,211 +571,269 @@ footer {
 
 <!-- AVALIAÇÕES -->
 <section id="avaliacoes">
-    <h2>⭐ Avaliações dos clientes</h2>
-    <p class="subtitulo">Compartilhe sua experiência com a Lordex3D.</p>
-
-    <div id="listaAvaliacoes" class="grade">
-        <p class="mensagem-vazia">Ainda não há avaliações.</p>
-    </div>
+    <h2>Avaliações</h2>
+    <p class="subtitulo">
+        Espaço demonstrativo para opiniões sobre os produtos.
+    </p>
 
     <form class="formulario" id="formAvaliacao">
-        <h3 style="color:var(--blue);margin-bottom:15px">
-            Deixe sua avaliação
-        </h3>
-
-        <input id="nomeAvaliacao" placeholder="Seu nome" required>
+        <input type="text" id="nomeAvaliacao"
+               placeholder="Seu nome ou apelido" required>
 
         <select id="notaAvaliacao" required>
-            <option value="">Escolha sua nota</option>
-            <option value="5">★★★★★ - Excelente</option>
-            <option value="4">★★★★ - Muito bom</option>
-            <option value="3">★★★ - Bom</option>
-            <option value="2">★★ - Regular</option>
-            <option value="1">★ - Precisa melhorar</option>
+            <option value="">Escolha uma nota</option>
+            <option value="5">⭐⭐⭐⭐⭐ - Excelente</option>
+            <option value="4">⭐⭐⭐⭐ - Muito bom</option>
+            <option value="3">⭐⭐⭐ - Bom</option>
+            <option value="2">⭐⭐ - Regular</option>
+            <option value="1">⭐ - Precisa melhorar</option>
         </select>
 
         <textarea id="textoAvaliacao"
-            placeholder="Conte sua experiência..."
-            required></textarea>
+                  placeholder="Escreva sua avaliação..."
+                  required></textarea>
 
-        <button class="botao" type="submit">Enviar avaliação</button>
+        <button class="botao" type="submit">
+            Publicar avaliação neste navegador
+        </button>
         <p id="mensagemAvaliacao"></p>
     </form>
+
+    <div class="grade" id="listaAvaliacoes" style="margin-top:25px;"></div>
 </section>
 
 <!-- NOVIDADES -->
 <section id="novidades">
-    <h2>✨ Novidades</h2>
-    <p class="subtitulo">Acompanhe as próximas criações da Lordex3D.</p>
+    <h2>Novidades</h2>
+    <p class="subtitulo">Acompanhe as ideias e criações da Lordex3D.</p>
+
     <div class="grade">
         <article class="card">
-            <div class="icone">🖨️</div>
-            <h3>Novas impressões</h3>
-            <p>Novas ideias e modelos em desenvolvimento.</p>
+            <div class="icone">🐉</div>
+            <h3>Novas miniaturas</h3>
+            <p>Novas ideias de miniaturas e peças articuladas.</p>
         </article>
+
         <article class="card">
-            <div class="icone">🎨</div>
-            <h3>Novas cores</h3>
-            <p>Mais possibilidades para personalizar seus produtos.</p>
+            <div class="icone">🛠️</div>
+            <h3>Projetos personalizados</h3>
+            <p>Desenvolvimento de peças conforme cada ideia.</p>
         </article>
+
         <article class="card">
-            <div class="icone">🚀</div>
-            <h3>Novos projetos</h3>
-            <p>Estamos sempre pensando em novas criações.</p>
+            <div class="icone">💡</div>
+            <h3>Mais criatividade</h3>
+            <p>Novas possibilidades com impressão 3D.</p>
         </article>
     </div>
 </section>
 
 <!-- PERGUNTAS FREQUENTES -->
 <section id="faq">
-    <h2>❓ Perguntas frequentes</h2>
-    <p class="subtitulo">Tire suas dúvidas.</p>
+    <h2>Perguntas frequentes</h2>
+    <p class="subtitulo">Tire suas dúvidas sobre a Lordex3D.</p>
 
     <details class="faq-item">
         <summary>O que é impressão 3D?</summary>
-        <p>É um processo de fabricação que cria objetos tridimensionais a partir de um modelo digital.</p>
+        <p>É um processo que cria objetos físicos a partir de modelos digitais, adicionando material em camadas.</p>
     </details>
 
     <details class="faq-item">
         <summary>Posso pedir um produto personalizado?</summary>
-        <p>Sim! Use o formulário de pedidos personalizados para conversar com a equipe.</p>
+        <p>Sim! Você pode enviar sua ideia pelo formulário de pedido personalizado.</p>
     </details>
 
     <details class="faq-item">
-        <summary>Como consulto os preços?</summary>
-        <p>Entre em contato com a equipe para consultar valores e disponibilidade.</p>
+        <summary>Todos os produtos têm preço definido?</summary>
+        <p>Não. Alguns projetos precisam ser avaliados antes de receber um orçamento.</p>
     </details>
 
     <details class="faq-item">
-        <summary>Quais cores estão disponíveis?</summary>
-        <p>As cores dependem dos materiais disponíveis no momento do pedido.</p>
+        <summary>O site realiza pagamentos?</summary>
+        <p>Não. O carrinho é apenas demonstrativo. Combine orçamento e pagamento com a equipe por um canal comercial autorizado.</p>
     </details>
 </section>
 
 <!-- CONTATO -->
 <section id="contato">
-    <h2>📩 Entre em contato</h2>
-    <p class="subtitulo">Envie uma mensagem para a Lordex3D.</p>
+    <h2>Entre em contato</h2>
+    <p class="subtitulo">
+        Envie uma mensagem para a equipe Lordex3D.
+    </p>
 
     <form class="formulario"
-        action="https://formsubmit.co/gabriellorenzorocha16@gmail.com"
-        method="POST">
+          action="https://formsubmit.co/gabriellorenzorocha16@gmail.com"
+          method="POST">
 
-        <input type="hidden" name="_subject" value="Contato pelo site Lordex3D">
+        <input type="hidden" name="_subject"
+               value="Nova mensagem - Lordex3D">
+
         <input type="hidden" name="_captcha" value="true">
 
-        <input type="text" name="nome" placeholder="Seu nome" required>
-        <input type="email" name="email" placeholder="Seu e-mail" required>
-        <textarea name="mensagem" placeholder="Sua mensagem..." required></textarea>
+        <input type="text" name="nome"
+               placeholder="Seu nome" required>
 
-        <button class="botao" type="submit">Enviar mensagem</button>
+        <input type="email" name="email"
+               placeholder="Seu e-mail" required>
+
+        <textarea name="mensagem"
+                  placeholder="Escreva sua mensagem..."
+                  required></textarea>
+
+        <button class="botao" type="submit">
+            Enviar mensagem
+        </button>
     </form>
 </section>
 
 </main>
 
+<!-- RODAPÉ -->
 <footer>
-    <h2>Lordex3D</h2>
-    <p>Ideias que ganham forma.</p>
-    <p>Impressão 3D • Criatividade • Personalização</p>
-    <p>© <span id="ano"></span> Lordex3D. Todos os direitos reservados.</p>
+    <h3 style="color:#00cfff;">Lordex3D</h3>
+    <p>Criatividade e tecnologia em impressão 3D.</p>
+    <p>© <span id="anoAtual"></span> Lordex3D. Todos os direitos reservados.</p>
 </footer>
 
 <!-- BOTÃO WHATSAPP -->
 <a class="whatsapp-btn"
-   href="https://wa.me/5511975892003?text=Olá!%20Vim%20pelo%20site%20da%20Lordex3D!"
+   href="https://wa.me/55DDDNUMERO"
    target="_blank"
    rel="noopener noreferrer">
-    ☎ Fale conosco
+    WhatsApp
 </a>
 
-<button id="topo" type="button" aria-label="Voltar ao topo">↑</button>
-<script>
-// ===================================
-// CONFIGURAÇÕES
-// ===================================
+<button id="topo" type="button" aria-label="Voltar ao topo">↑</button><script>
+// =====================================
+// CONFIGURAÇÃO
+// =====================================
 
-// TROQUE PELO WHATSAPP COMERCIAL DA EQUIPE
-const WHATSAPP = "5511975892003";
+// Troque pelo WhatsApp comercial autorizado.
+// Use apenas números: país + DDD + telefone.
+const WHATSAPP = "55DDDNUMERO";
 
-// Produtos de exemplo.
-// Edite os nomes, categorias e preços quando tiver o catálogo.
+// =====================================
+// PRODUTOS
+// =====================================
+
 const produtos = [
     {
         id: 1,
         nome: "Dragão articulado",
         categoria: "decoracao",
         preco: 0,
-        emoji: "🐉"
+        icone: "🐉",
+        descricao: "Miniatura articulada impressa em 3D."
     },
     {
         id: 2,
         nome: "Chaveiro personalizado",
         categoria: "acessorios",
         preco: 0,
-        emoji: "🔑"
+        icone: "🔑",
+        descricao: "Chaveiro com estilo personalizado."
     },
     {
         id: 3,
         nome: "Suporte para celular",
         categoria: "utilidades",
         preco: 0,
-        emoji: "📱"
+        icone: "📱",
+        descricao: "Suporte para usar seu celular."
     },
     {
         id: 4,
         nome: "Miniatura decorativa",
         categoria: "decoracao",
         preco: 0,
-        emoji: "🧸"
+        icone: "🧩",
+        descricao: "Peça decorativa feita em impressão 3D."
     },
     {
         id: 5,
         nome: "Organizador de mesa",
         categoria: "utilidades",
         preco: 0,
-        emoji: "🗂️"
+        icone: "🗂️",
+        descricao: "Organizador para pequenos objetos."
     },
     {
         id: 6,
-        nome: "Chaveiro especial",
+        nome: "Chaveiro criativo",
         categoria: "acessorios",
         preco: 0,
-        emoji: "⭐"
+        icone: "⭐",
+        descricao: "Acessório criativo impresso em 3D."
     }
 ];
 
 let favoritos = [];
 let carrinho = [];
 
-// ===================================
-// FORMATAÇÃO DE PREÇO
-// ===================================
+// =====================================
+// ELEMENTOS
+// =====================================
+
+const listaProdutos = document.getElementById("listaProdutos");
+const listaFavoritos = document.getElementById("listaFavoritos");
+const itensCarrinho = document.getElementById("itensCarrinho");
+
+// =====================================
+// FORMATAÇÃO DE PREÇOS
+// =====================================
 
 function formatarPreco(valor) {
+    if (valor === 0) return "Consulte o preço";
+
     return valor.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     });
 }
 
-// ===================================
+// =====================================
 // MOSTRAR PRODUTOS
-// ===================================
+// =====================================
+
+function criarCardProduto(produto, favorito = false) {
+    return `
+        <article class="card produto">
+            <div class="foto">${produto.icone}</div>
+
+            <h3>${produto.nome}</h3>
+
+            <p>${produto.descricao}</p>
+
+            <p class="destaque">
+                ${formatarPreco(produto.preco)}
+            </p>
+
+            <div class="acoes">
+                <button type="button"
+                    onclick="adicionarCarrinho(${produto.id})">
+                    🛒 Adicionar
+                </button>
+
+                <button type="button"
+                    onclick="alternarFavorito(${produto.id})">
+                    ${favorito ? "❤️ Favoritado" : "🤍 Favoritar"}
+                </button>
+            </div>
+        </article>
+    `;
+}
 
 function mostrarProdutos() {
-    const pesquisa = document
+    const termo = document
         .getElementById("pesquisa")
-        .value.toLowerCase();
+        .value.toLowerCase()
+        .trim();
 
-    const categoria = document
-        .getElementById("categoria")
-        .value;
+    const categoria = document.getElementById("categoria").value;
 
     const filtrados = produtos.filter(produto => {
-        const combinaNome = produto.nome
-            .toLowerCase()
-            .includes(pesquisa);
+        const combinaNome =
+            produto.nome.toLowerCase().includes(termo);
 
         const combinaCategoria =
             categoria === "todos" ||
@@ -655,59 +842,16 @@ function mostrarProdutos() {
         return combinaNome && combinaCategoria;
     });
 
-    const lista = document.getElementById("listaProdutos");
-    lista.innerHTML = "";
-
     if (filtrados.length === 0) {
-        lista.innerHTML =
+        listaProdutos.innerHTML =
             '<p class="mensagem-vazia">Nenhum produto encontrado.</p>';
         return;
     }
 
-    filtrados.forEach(produto => {
-        const card = document.createElement("article");
-        card.className = "card produto";
-
-        const foto = document.createElement("div");
-        foto.className = "foto";
-        foto.textContent = produto.emoji;
-
-        const nome = document.createElement("h3");
-        nome.textContent = produto.nome;
-
-        const preco = document.createElement("p");
-        preco.className = "destaque";
-        preco.textContent = produto.preco > 0
-            ? formatarPreco(produto.preco)
-            : "Consulte o preço";
-
-        const acoes = document.createElement("div");
-        acoes.className = "acoes";
-
-        const favoritoBtn = document.createElement("button");
-        favoritoBtn.textContent =
-            favoritos.includes(produto.id) ? "❤️ Favorito" : "♡ Favoritar";
-
-        favoritoBtn.addEventListener("click", () => {
-            alternarFavorito(produto.id);
-        });
-
-        const carrinhoBtn = document.createElement("button");
-        carrinhoBtn.textContent = "🛒 Adicionar";
-
-        carrinhoBtn.addEventListener("click", () => {
-            adicionarCarrinho(produto.id);
-        });
-
-        acoes.append(favoritoBtn, carrinhoBtn);
-        card.append(foto, nome, preco, acoes);
-        lista.appendChild(card);
-    });
+    listaProdutos.innerHTML = filtrados
+        .map(produto => criarCardProduto(produto))
+        .join("");
 }
-
-// ===================================
-// PESQUISA E CATEGORIAS
-// ===================================
 
 document.getElementById("pesquisa")
     .addEventListener("input", mostrarProdutos);
@@ -715,9 +859,68 @@ document.getElementById("pesquisa")
 document.getElementById("categoria")
     .addEventListener("change", mostrarProdutos);
 
-// ===================================
+// =====================================
+// PESQUISA DO TOPO
+// =====================================
+
+const pesquisaBtn = document.getElementById("pesquisaBtn");
+const pesquisaTopo = document.getElementById("pesquisaTopo");
+const pesquisaGeral = document.getElementById("pesquisaGeral");
+
+pesquisaBtn.addEventListener("click", () => {
+    const aberta = pesquisaTopo.classList.toggle("aberta");
+
+    pesquisaBtn.setAttribute("aria-expanded", String(aberta));
+
+    if (aberta) {
+        pesquisaGeral.focus();
+    }
+});
+
+pesquisaGeral.addEventListener("input", () => {
+    document.getElementById("pesquisa").value = pesquisaGeral.value;
+    mostrarProdutos();
+});
+
+pesquisaGeral.addEventListener("keydown", evento => {
+    if (evento.key === "Enter") {
+        document.getElementById("loja").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+});
+
+document.getElementById("pesquisa")
+    .addEventListener("input", () => {
+        pesquisaGeral.value =
+            document.getElementById("pesquisa").value;
+    });
+
+// =====================================
+// MENU HAMBÚRGUER
+// =====================================
+
+const menuToggle = document.getElementById("menuToggle");
+const menuNavegacao = document.getElementById("menuNavegacao");
+
+menuToggle.addEventListener("click", () => {
+    const aberto = menuNavegacao.classList.toggle("aberto");
+
+    menuToggle.textContent = aberto ? "✕" : "☰";
+    menuToggle.setAttribute("aria-expanded", String(aberto));
+});
+
+menuNavegacao.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        menuNavegacao.classList.remove("aberto");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+    });
+});
+
+// =====================================
 // FAVORITOS
-// ===================================
+// =====================================
 
 function alternarFavorito(id) {
     if (favoritos.includes(id)) {
@@ -726,61 +929,48 @@ function alternarFavorito(id) {
         favoritos.push(id);
     }
 
-    mostrarProdutos();
     mostrarFavoritos();
+    mostrarProdutos();
 }
 
 function mostrarFavoritos() {
-    const lista = document.getElementById("listaFavoritos");
-    lista.innerHTML = "";
-
     const escolhidos = produtos.filter(produto =>
         favoritos.includes(produto.id)
     );
 
     if (escolhidos.length === 0) {
-        lista.innerHTML =
-            '<p class="mensagem-vazia">Você ainda não tem favoritos.</p>';
+        listaFavoritos.innerHTML =
+            '<p class="mensagem-vazia">Você ainda não favoritou produtos.</p>';
         return;
     }
 
-    escolhidos.forEach(produto => {
-        const card = document.createElement("article");
-        card.className = "card";
-
-        const nome = document.createElement("h3");
-        nome.textContent = produto.emoji + " " + produto.nome;
-
-        const remover = document.createElement("button");
-        remover.className = "botao";
-        remover.textContent = "Remover dos favoritos";
-
-        remover.addEventListener("click", () => {
-            alternarFavorito(produto.id);
-        });
-
-        card.append(nome, remover);
-        lista.appendChild(card);
-    });
+    listaFavoritos.innerHTML = escolhidos
+        .map(produto => criarCardProduto(produto, true))
+        .join("");
 }
 
-// ===================================
+// =====================================
 // CARRINHO
-// ===================================
+// =====================================
 
 function adicionarCarrinho(id) {
+    const produto = produtos.find(item => item.id === id);
+
+    if (!produto) return;
+
     const existente = carrinho.find(item => item.id === id);
 
     if (existente) {
         existente.quantidade++;
     } else {
         carrinho.push({
-            id: id,
+            ...produto,
             quantidade: 1
         });
     }
 
     mostrarCarrinho();
+    alert("Produto adicionado ao carrinho!");
 }
 
 function removerCarrinho(id) {
@@ -788,108 +978,125 @@ function removerCarrinho(id) {
     mostrarCarrinho();
 }
 
+function alterarQuantidade(id, mudanca) {
+    const item = carrinho.find(produto => produto.id === id);
+
+    if (!item) return;
+
+    item.quantidade += mudanca;
+
+    if (item.quantidade <= 0) {
+        removerCarrinho(id);
+    } else {
+        mostrarCarrinho();
+    }
+}
+
 function mostrarCarrinho() {
-    const lista = document.getElementById("listaCarrinho");
-    const totalElemento = document.getElementById("totalCarrinho");
-
-    lista.innerHTML = "";
-
     if (carrinho.length === 0) {
-        lista.innerHTML =
+        itensCarrinho.innerHTML =
             '<p class="mensagem-vazia">Seu carrinho está vazio.</p>';
 
-        totalElemento.textContent = formatarPreco(0);
+        document.getElementById("totalCarrinho").textContent =
+            "R$ 0,00";
+
         return;
     }
 
-    let total = 0;
+    itensCarrinho.innerHTML = carrinho.map(item => `
+        <div class="card" style="margin-bottom:12px;">
+            <h3>${item.icone} ${item.nome}</h3>
 
-    carrinho.forEach(item => {
-        const produto = produtos.find(p => p.id === item.id);
-        total += produto.preco * item.quantidade;
+            <p>Quantidade: ${item.quantidade}</p>
 
-        const linha = document.createElement("div");
-        linha.style.padding = "12px";
-        linha.style.borderBottom = "1px solid #1689ad";
+            <p>${formatarPreco(item.preco)}</p>
 
-        const nome = document.createElement("p");
-        nome.textContent =
-            produto.emoji + " " + produto.nome +
-            " — Quantidade: " + item.quantidade;
+            <div class="acoes">
+                <button type="button"
+                    onclick="alterarQuantidade(${item.id}, -1)">−</button>
 
-        const preco = document.createElement("p");
-        preco.textContent = produto.preco > 0
-            ? formatarPreco(produto.preco * item.quantidade)
-            : "Consulte o preço";
+                <button type="button"
+                    onclick="alterarQuantidade(${item.id}, 1)">+</button>
 
-        const remover = document.createElement("button");
-        remover.className = "botao";
-        remover.textContent = "Remover";
+                <button type="button"
+                    onclick="removerCarrinho(${item.id})">
+                    Remover
+                </button>
+            </div>
+        </div>
+    `).join("");
 
-        remover.addEventListener("click", () => {
-            removerCarrinho(item.id);
-        });
+    const total = carrinho.reduce(
+        (soma, item) => soma + item.preco * item.quantidade,
+        0
+    );
 
-        linha.append(nome, preco, remover);
-        lista.appendChild(linha);
+    const temPrecoPendente = carrinho.some(item => item.preco === 0);
+
+    document.getElementById("totalCarrinho").textContent =
+        temPrecoPendente
+            ? "Consulte o preço dos produtos"
+            : formatarPreco(total);
+}
+
+document.getElementById("limparCarrinho")
+    .addEventListener("click", () => {
+        carrinho = [];
+        mostrarCarrinho();
     });
 
-    totalElemento.textContent = formatarPreco(total);
-}
+// =====================================
+// CUPOM DEMONSTRATIVO
+// =====================================
 
-// ===================================
-// CUPONS
-// ===================================
+document.getElementById("verificarCupom")
+    .addEventListener("click", () => {
+        const codigo = document.getElementById("codigoCupom")
+            .value.trim().toUpperCase();
 
-function verificarCupom() {
-    const codigo = document.getElementById("codigoCupom")
-        .value.trim().toUpperCase();
+        const resultado = document.getElementById("resultadoCupom");
 
-    const resultado = document.getElementById("resultadoCupom");
+        if (codigo === "LORDEX10") {
+            resultado.textContent =
+                "Código reconhecido! Consulte a equipe sobre as condições.";
+            resultado.style.color = "var(--green)";
+        } else {
+            resultado.textContent = "Cupom não reconhecido.";
+            resultado.style.color = "#ff7777";
+        }
+    });
 
-    if (codigo === "LORDEX10") {
-        resultado.textContent =
-            "Cupom reconhecido! Consulte a equipe para confirmar a promoção.";
-    } else {
-        resultado.textContent = "Cupom não encontrado.";
-    }
-}
-
-// ===================================
-// PEDIDOS PERSONALIZADOS
-// ===================================
+// =====================================
+// PEDIDO PERSONALIZADO
+// =====================================
 
 document.getElementById("formPedido")
-    .addEventListener("submit", function(event) {
+    .addEventListener("submit", evento => {
+        evento.preventDefault();
 
-        event.preventDefault();
+        const nome = document.getElementById("nomePedido").value.trim();
+        const produto = document.getElementById("produtoPedido").value.trim();
+        const detalhes = document.getElementById("detalhesPedido").value.trim();
 
-        if (WHATSAPP === "5511975892003") {
-            alert("Configure primeiro o número comercial do WhatsApp no código.");
+        const mensagem =
+            `Olá! Meu nome é ${nome}. Gostaria de solicitar: ${produto}. Detalhes: ${detalhes}`;
+
+        const numero = WHATSAPP.replace(/\D/g, "");
+
+        if (numero === "55DDDNUMERO" || numero.length < 12) {
+            alert("Configure o número comercial autorizado no código primeiro.");
             return;
         }
 
-        const nome = document.getElementById("nomePedido").value;
-        const produto = document.getElementById("produtoPedido").value;
-        const cor = document.getElementById("corPedido").value;
-        const detalhes = document.getElementById("detalhesPedido").value;
-
-        const mensagem =
-            "Olá! Vim pelo site da Lordex3D!\n\n" +
-            "Nome: " + nome + "\n" +
-            "Produto: " + produto + "\n" +
-            "Cor: " + cor + "\n" +
-            "Detalhes: " + detalhes;
-
-        const link = "https://wa.me/" + WHATSAPP +
+        const link = "https://wa.me/" + numero +
             "?text=" + encodeURIComponent(mensagem);
 
-        window.open(link, "_blank");
+        window.open(link, "_blank", "noopener,noreferrer");
     });
 
-// ===================================
-// AVALIAÇÕES
-// ===================================
+// =====================================
+// AVALIAÇÕES LOCAIS
+// =====================================
 
 let avaliacoes = [];
 
@@ -897,14 +1104,12 @@ try {
     avaliacoes = JSON.parse(
         localStorage.getItem("lordex3d_avaliacoes") || "[]"
     );
-    if (!Array.isArray(avaliacoes)) avaliacoes = [];
-} catch {
+} catch (erro) {
     avaliacoes = [];
 }
 
 function mostrarAvaliacoes() {
     const lista = document.getElementById("listaAvaliacoes");
-    lista.innerHTML = "";
 
     if (avaliacoes.length === 0) {
         lista.innerHTML =
@@ -912,82 +1117,66 @@ function mostrarAvaliacoes() {
         return;
     }
 
-    avaliacoes.forEach(avaliacao => {
-        const card = document.createElement("article");
-        card.className = "card";
+    lista.innerHTML = avaliacoes.map(avaliacao => `
+        <article class="card">
+            <h3>${escaparHTML(avaliacao.nome)}</h3>
+            <p class="estrelas">${"⭐".repeat(avaliacao.nota)}</p>
+            <p>${escaparHTML(avaliacao.texto)}</p>
+        </article>
+    `).join("");
+}
 
-        const nome = document.createElement("h3");
-        nome.textContent = avaliacao.nome;
-
-        const estrelas = document.createElement("div");
-        estrelas.className = "estrelas";
-        estrelas.textContent =
-            "★".repeat(avaliacao.nota) +
-            "☆".repeat(5 - avaliacao.nota);
-
-        const texto = document.createElement("p");
-        texto.textContent = avaliacao.texto;
-
-        card.append(nome, estrelas, texto);
-        lista.appendChild(card);
-    });
+function escaparHTML(texto) {
+    return String(texto).replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[caractere]);
 }
 
 document.getElementById("formAvaliacao")
-    .addEventListener("submit", function(event) {
+    .addEventListener("submit", evento => {
+        evento.preventDefault();
 
-        event.preventDefault();
+        const nome = document.getElementById("nomeAvaliacao").value.trim();
+        const nota = Number(document.getElementById("notaAvaliacao").value);
+        const texto = document.getElementById("textoAvaliacao").value.trim();
 
-        const nome = document.getElementById("nomeAvaliacao")
-            .value.trim();
+        avaliacoes.unshift({ nome, nota, texto });
 
-        const nota = Number(
-            document.getElementById("notaAvaliacao").value
+        localStorage.setItem(
+            "lordex3d_avaliacoes",
+            JSON.stringify(avaliacoes)
         );
-
-        const texto = document.getElementById("textoAvaliacao")
-            .value.trim();
-
-        if (!nome || !texto || nota < 1 || nota > 5) return;
-
-        avaliacoes.push({ nome, nota, texto });
-
-        try {
-            localStorage.setItem(
-                "lordex3d_avaliacoes",
-                JSON.stringify(avaliacoes)
-            );
-        } catch {
-            document.getElementById("mensagemAvaliacao")
-                .textContent = "Não foi possível salvar neste navegador.";
-        }
 
         mostrarAvaliacoes();
 
-        document.getElementById("mensagemAvaliacao")
-            .textContent = "Avaliação adicionada neste navegador!";
+        document.getElementById("mensagemAvaliacao").textContent =
+            "Avaliação salva neste navegador!";
 
-        this.reset();
+        evento.target.reset();
     });
 
-// ===================================
-// MODO CLARO E ESCURO
-// ===================================
+// =====================================
+// TEMA CLARO E ESCURO
+// =====================================
 
 document.getElementById("temaBtn")
     .addEventListener("click", () => {
         document.body.classList.toggle("claro");
     });
 
-// ===================================
+// =====================================
 // VOLTAR AO TOPO
-// ===================================
+// =====================================
 
 const botaoTopo = document.getElementById("topo");
 
 window.addEventListener("scroll", () => {
     botaoTopo.style.display =
-        window.scrollY > 300 ? "block" : "none";
+        window.scrollY > 350 ? "block" : "none";
 });
 
 botaoTopo.addEventListener("click", () => {
@@ -997,16 +1186,16 @@ botaoTopo.addEventListener("click", () => {
     });
 });
 
-// ===================================
+// =====================================
 // ANO AUTOMÁTICO
-// ===================================
+// =====================================
 
-document.getElementById("ano").textContent =
+document.getElementById("anoAtual").textContent =
     new Date().getFullYear();
 
-// ===================================
-// INICIALIZAÇÃO
-// ===================================
+// =====================================
+// INICIAR O SITE
+// =====================================
 
 mostrarProdutos();
 mostrarFavoritos();
